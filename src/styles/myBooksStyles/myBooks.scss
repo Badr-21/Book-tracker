@@ -1,0 +1,58 @@
+@use "../mixins" as *;
+@use "../fonts" as *;
+@use "../colors" as *;
+
+.mybooks-container {
+   width: 100%;
+   height: calc(100vh - 4.5rem);
+   padding: 1rem 0 0;
+   background-color: $White;
+   transition: 0.3s;
+   .books-categories {
+      width: 13rem;
+      height: inherit;
+      border-right: 1px solid $Very-dark-blue;
+      .mybooks-nav {
+         ul {
+            li {
+               width: fit-content;
+               padding: 0.5rem 0 0.5rem 2rem;
+               margin-bottom: 2rem;
+               list-style: none;
+               &:hover {
+                  scale: 1.1;
+                  transition: 0.3s;
+               }
+               .book-category {
+                  text-decoration: none;
+                  @include flexbox(flex-start, center, 2rem);
+                  img {
+                     width: 1.5rem;
+                  }
+                  p {
+                     color: $Very-dark-blue;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+.mybooks-container.darkmode {
+   background-color: $Black;
+   .books-categories {
+      border-right: 1px solid $Turquoise;
+      .mybooks-nav {
+         ul {
+            li {
+               .book-category {
+                  p {
+                     color: $Turquoise;
+                  }
+               }
+            }
+         }
+      }
+   }
+}

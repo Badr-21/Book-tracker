@@ -1,0 +1,101 @@
+@use "../mixins" as *;
+@use "../fonts" as *;
+@use "../colors" as *;
+
+.home-container {
+   width: 100%;
+   height: calc(100vh - 4.5rem);
+   background-color: $White;
+   transition: 0.3s;
+   .hero {
+      @include flexbox(space-between, center);
+      .hero-image {
+         width: 45%;
+         img {
+            display: block;
+            width: 94%;
+         }
+      }
+      .hero-text {
+         width: 50%;
+         height: 20rem;
+         padding: 0 2rem;
+         @include flexbox(space-between, flex-start, 0, 0, column);
+         .quote {
+            color: $Very-dark-blue;
+            h1 {
+               font-size: 2rem;
+               font-weight: $font-700;
+            }
+            p {
+               font-size: 1.5rem;
+               font-weight: $font-500;
+               text-align: right;
+            }
+         }
+         .get-started {
+            width: 100%;
+            color: $Very-dark-blue;
+            @include flexbox(flex-start, flex-start, 0, 2rem, column);
+            h2 {
+               font-size: 1.4rem;
+               font-weight: $font-700;
+            }
+            .form {
+               width: 100%;
+               @include flexbox(space-between, center);
+               input {
+                  width: 27.5rem;
+                  padding: 0.75rem;
+                  border-radius: 0.5rem;
+                  outline: none;
+                  border: 0.1rem solid $Very-dark-blue;
+                  color: $Very-dark-blue;
+                  font-size: 1rem;
+                  background-color: $Very-light-gray;
+                  &::placeholder {
+                     color: $Very-dark-blue;
+                     font-size: 1rem;
+                  }
+               }
+               .search {
+                  width: 8rem;
+                  padding: 0.75rem 0;
+                  border: none;
+                  border-radius: 0.5rem;
+                  background-color: $Very-dark-blue;
+                  color: $White;
+                  font-size: 1rem;
+                  font-weight: $font-700;
+               }
+            }
+         }
+      }
+   }
+}
+
+.home-container.dark-mode {
+   background-color: $Black;
+   .hero-text {
+      .quote {
+         color: $Turquoise;
+      }
+      .get-started {
+         color: $Turquoise;
+         .form {
+            input {
+               background-color: $Dark-gray;
+               border-color: $Turquoise;
+               color: $Turquoise;
+               &::placeholder {
+                  color: $Turquoise;
+               }
+            }
+            .search {
+               background-color: $Turquoise;
+               color: $Black;
+            }
+         }
+      }
+   }
+}
