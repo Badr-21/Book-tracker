@@ -72,28 +72,105 @@
          }
       }
    }
+   .books {
+      padding: 0 2rem;
+      background-color: $White;
+      transition: 0.3s;
+      @include flexbox(flex-start, space-between, 2rem, 2rem, row, wrap);
+      .book {
+         max-width: calc((100% - 4rem) / 3);
+         padding-right: 1rem;
+         border-radius: 0.5rem;
+         box-shadow: 0rem 0.1rem 0.3rem rgba(128, 128, 128, 0.3);
+         &:hover {
+            scale: 1.1;
+            transition: 0.3s;
+         }
+         @include flexbox(flex-start, flex-start, 1rem);
+         .book-image {
+            img {
+               border-radius: 0.5rem 0 0 0;
+            }
+         }
+         .book-text {
+            padding-top: 1rem;
+            .title {
+               color: $Black;
+               font-weight: $font-700;
+               margin-bottom: 0.5rem;
+            }
+            .authors-and-date {
+               color: $Gray;
+               font-size: 0.9rem;
+               font-weight: $font-500;
+               margin-bottom: 0.3rem;
+            }
+            .description {
+               color: $Black;
+               font-weight: $font-400;
+               $font-size: 0.8rem;
+               .description-text {
+                  $max-lines: 3;
+                  $line-height: 1.4;
+                  line-height: $line-height;
+                  font-size: $font-size;
+                  height: calc($max-lines * $font-size * $line-height);
+                  overflow: hidden;
+                  margin-bottom: 0.25rem;
+               }
+               .see-more {
+                  width: fit-content;
+                  color: $three;
+                  font-size: $font-size;
+                  cursor: pointer;
+                  &:hover {
+                     text-decoration: underline;
+                  }
+               }
+            }
+         }
+      }
+   }
 }
 
 .home-container.dark-mode {
    background-color: $Black;
-   .hero-text {
-      .quote {
-         color: $Turquoise;
-      }
-      .get-started {
-         color: $Turquoise;
-         .form {
-            input {
-               background-color: $Dark-gray;
-               border-color: $Turquoise;
-               color: $Turquoise;
-               &::placeholder {
+   .hero {
+      .hero-text {
+         .quote {
+            color: $Turquoise;
+         }
+         .get-started {
+            color: $Turquoise;
+            .form {
+               input {
+                  background-color: $Dark-gray;
+                  border-color: $Turquoise;
                   color: $Turquoise;
+                  &::placeholder {
+                     color: $Turquoise;
+                  }
+               }
+               .search {
+                  background-color: $Turquoise;
+                  color: $Black;
                }
             }
-            .search {
-               background-color: $Turquoise;
-               color: $Black;
+         }
+      }
+   }
+   .books.dark-mode {
+      background-color: $Black;
+      .book {
+         .book-text {
+            .title {
+               color: $White;
+            }
+            .authors-and-date {
+               color: $Gray;
+            }
+            .description {
+               color: $White;
             }
          }
       }
