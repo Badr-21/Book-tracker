@@ -82,6 +82,7 @@
   color: #003147;
   font-size: 1rem;
   background-color: hsl(0, 0%, 93%);
+  transition: 0.3s;
 }
 .home-container .hero .hero-text .get-started .form input::-moz-placeholder {
   color: #003147;
@@ -132,11 +133,16 @@
   scale: 1.1;
   transition: 0.3s;
 }
+.home-container .books .book .book-image {
+  height: 100%;
+}
 .home-container .books .book .book-image img {
-  border-radius: 0.5rem 0 0 0;
+  width: 7.5rem;
+  height: inherit;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 .home-container .books .book .book-text {
-  padding-top: 1rem;
+  padding: 1rem 0;
 }
 .home-container .books .book .book-text .title {
   color: hsl(0, 0%, 12%);
@@ -152,22 +158,20 @@
 .home-container .books .book .book-text .description {
   color: hsl(0, 0%, 12%);
   font-weight: 400;
-}
-.home-container .books .book .book-text .description .description-text {
   line-height: 1.4;
   font-size: 0.8rem;
   height: 3.36rem;
   overflow: hidden;
   margin-bottom: 0.25rem;
 }
-.home-container .books .book .book-text .description .see-more {
+.home-container .books .book .book-text .see-more {
   width: -moz-fit-content;
   width: fit-content;
   color: hsl(204, 90%, 49%);
   font-size: 0.8rem;
   cursor: pointer;
 }
-.home-container .books .book .book-text .description .see-more:hover {
+.home-container .books .book .book-text .see-more:hover {
   text-decoration: underline;
 }
 

@@ -53,6 +53,7 @@
                   color: $Very-dark-blue;
                   font-size: 1rem;
                   background-color: $Very-light-gray;
+                  transition: 0.3s;
                   &::placeholder {
                      color: $Very-dark-blue;
                      font-size: 1rem;
@@ -88,12 +89,15 @@
          }
          @include flexbox(flex-start, flex-start, 1rem);
          .book-image {
+            height: 100%;
             img {
-               border-radius: 0.5rem 0 0 0;
+               width: 7.5rem;
+               height: inherit;
+               border-radius: 0.5rem 0 0 0.5rem;
             }
          }
          .book-text {
-            padding-top: 1rem;
+            padding: 1rem 0;
             .title {
                color: $Black;
                font-weight: $font-700;
@@ -109,23 +113,21 @@
                color: $Black;
                font-weight: $font-400;
                $font-size: 0.8rem;
-               .description-text {
-                  $max-lines: 3;
-                  $line-height: 1.4;
-                  line-height: $line-height;
-                  font-size: $font-size;
-                  height: calc($max-lines * $font-size * $line-height);
-                  overflow: hidden;
-                  margin-bottom: 0.25rem;
-               }
-               .see-more {
-                  width: fit-content;
-                  color: $three;
-                  font-size: $font-size;
-                  cursor: pointer;
-                  &:hover {
-                     text-decoration: underline;
-                  }
+               $max-lines: 3;
+               $line-height: 1.4;
+               line-height: $line-height;
+               font-size: $font-size;
+               height: calc($max-lines * $font-size * $line-height);
+               overflow: hidden;
+               margin-bottom: 0.25rem;
+            }
+            .see-more {
+               width: fit-content;
+               color: $Blue;
+               font-size: 0.8rem;
+               cursor: pointer;
+               &:hover {
+                  text-decoration: underline;
                }
             }
          }
