@@ -4,19 +4,19 @@
 
 .mybooks-container {
    width: 100%;
-   height: calc(100vh - 4.5rem);
+   height: calc(100% - 4.5rem);
    padding: 1rem 0 0;
    background-color: $White;
    transition: 0.3s;
+   @include flexbox(flex-start, flex-start);
    .books-categories {
-      width: 13rem;
-      height: inherit;
-      border-right: 1px solid $Very-dark-blue;
+      width: 12rem;
+      padding: 0 1rem;
       .mybooks-nav {
          ul {
             li {
                width: fit-content;
-               padding: 0.5rem 0 0.5rem 2rem;
+               padding: 0.5rem 0;
                margin-bottom: 2rem;
                list-style: none;
                &:hover {
@@ -37,12 +37,33 @@
          }
       }
    }
+   .display-books {
+      width: calc(100% - 12rem);
+      height: 100%;
+      min-height: calc(100vh - 5.5rem);
+      padding: 1rem 1.5rem 0;
+      border-left: 1px solid $Very-dark-blue;
+      h3 {
+         margin-bottom: 1.5rem;
+         font-weight: $font-700;
+         color: $Very-dark-blue;
+      }
+      > div {
+         margin-bottom: 3rem;
+         @include flexbox(flex-start, flex-start, 1.5rem, 1.5rem, row, wrap);
+         img {
+            width: 8rem;
+            height: 11rem;
+            box-shadow: 0.1rem 0.1rem 0.5rem rgba(128, 128, 128, 0.3),
+               -0.1rem -0.1rem 0.5rem rgba(128, 128, 128, 0.3);
+         }
+      }
+   }
 }
 
 .mybooks-container.darkmode {
    background-color: $Black;
    .books-categories {
-      border-right: 1px solid $Turquoise;
       .mybooks-nav {
          ul {
             li {
@@ -52,6 +73,24 @@
                   }
                }
             }
+         }
+      }
+   }
+   .display-books {
+      border-left-color: $Turquoise;
+      h3 {
+         color: $Turquoise;
+      }
+   }
+}
+
+@media (hover: hover) {
+   .display-books {
+      > div {
+         img:hover {
+            cursor: pointer;
+            scale: 1.1;
+            transition: 0.3s;
          }
       }
    }
