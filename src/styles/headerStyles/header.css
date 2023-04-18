@@ -95,7 +95,7 @@
 }
 .header .header-nav .mode .toggle input:checked + .slider:before {
   transform: translate(1.6rem, -50%);
-  background-color: #003147;
+  background-color: hsl(0, 0%, 12%);
 }
 
 .header.dark-mode {
