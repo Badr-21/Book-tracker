@@ -8,10 +8,27 @@ import BookHaveReadIcon from "../assets/book-have-read-icon.svg";
 import BookHaveReadIconDarMode from "../assets/book-have-read-icon-darkmode.svg";
 import "../styles/myBooksStyles/myBooks.css";
 import { Link } from "react-router-dom";
-import { darkModeContext } from "../App";
+import {
+   readingNowBooksContext,
+   favoriteBooksContext,
+   toReadBooksContext,
+   haveReadBooksContext,
+} from "../App";
 import { useContext } from "react";
-function MyBooks() {
-   const { darkMode } = useContext(darkModeContext);
+
+function MyBooks({ darkMode, setBookDetails, allBooks }) {
+   const { readingNowBooks } = useContext(readingNowBooksContext);
+   const { favoriteBooks } = useContext(favoriteBooksContext);
+   const { toReadBooks } = useContext(toReadBooksContext);
+   const { haveReadBooks } = useContext(haveReadBooksContext);
+
+   const handleSeeBook = (e) => {
+      const seeBook = allBooks.filter((book) => {
+         return book.id === e.target.id;
+      });
+      setBookDetails(...seeBook);
+   };
+
    return (
       <main className={darkMode ? "mybooks-container darkmode" : "mybooks-container"}>
          <section className="books-categories">
@@ -56,7 +73,84 @@ function MyBooks() {
                </ul>
             </nav>
          </section>
-         <section className="books-display-data"></section>
+         <section className="display-books">
+            <h3 className="display-books-category">
+               Reading now books<span>{` (${readingNowBooks.length})`}</span>
+            </h3>
+            <div className="reading-now-books">
+               {readingNowBooks
+                  ? readingNowBooks.map((book) => {
+                       return (
+                          <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <img
+                                src={book.volumeInfo.imageLinks.thumbnail}
+                                alt={book.volumeInfo.title}
+                                id={book.id}
+                                onClick={handleSeeBook}
+                             />
+                          </Link>
+                       );
+                    })
+                  : null}
+            </div>
+            <h3 className="display-books-category">
+               Favorite books<span>{` (${favoriteBooks.length})`}</span>
+            </h3>
+            <div className="favorite-books">
+               {favoriteBooks
+                  ? favoriteBooks.map((book) => {
+                       return (
+                          <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <img
+                                src={book.volumeInfo.imageLinks.thumbnail}
+                                alt={book.volumeInfo.title}
+                                id={book.id}
+                                onClick={handleSeeBook}
+                             />
+                          </Link>
+                       );
+                    })
+                  : null}
+            </div>
+            <h3 className="display-books-category">
+               To read books<span>{` (${toReadBooks.length})`}</span>
+            </h3>
+            <div className="to-read-books">
+               {toReadBooks
+                  ? toReadBooks.map((book) => {
+                       return (
+                          <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <img
+                                src={book.volumeInfo.imageLinks.thumbnail}
+                                alt={book.volumeInfo.title}
+                                id={book.id}
+                                onClick={handleSeeBook}
+                             />
+                          </Link>
+                       );
+                    })
+                  : null}
+            </div>
+            <h3 className="display-books-category">
+               Have read books<span>{` (${haveReadBooks.length})`}</span>
+            </h3>
+            <div className="have-read-books">
+               {haveReadBooks
+                  ? haveReadBooks.map((book) => {
+                       return (
+                          <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <img
+                                src={book.volumeInfo.imageLinks.thumbnail}
+                                alt={book.volumeInfo.title}
+                                id={book.id}
+                                onClick={handleSeeBook}
+                             />
+                          </Link>
+                       );
+                    })
+                  : null}
+            </div>
+         </section>
       </main>
    );
 }
