@@ -1,18 +1,17 @@
 import logo from "../assets/book-tracker-logo.svg";
 import logoDarkMode from "../assets/book-tracker-logo-darkmode.svg";
 import "../styles/headerStyles/header.css";
-import { darkModeContext } from "../App";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-function Header() {
-   const { darkMode, setDarkMode } = useContext(darkModeContext);
+function Header({ darkMode, setDarkMode }) {
    const handleDarkMode = () => {
       setDarkMode(!darkMode);
    };
    return (
       <header className={darkMode ? "header dark-mode" : "header"}>
          <div className="header-logo">
-            <img src={darkMode ? logoDarkMode : logo} alt="Books icon" />
+            <Link to="/" reloadDocument>
+               <img src={darkMode ? logoDarkMode : logo} alt="Books icon" />
+            </Link>
          </div>
          <nav className="header-nav">
             <ul>
@@ -47,9 +46,9 @@ function Header() {
                            ? { color: "#66b8ff", textDecoration: "none" }
                            : { color: "#003147", textDecoration: "none" }
                      }
-                     to="search"
+                     to="mynotes"
                   >
-                     Search
+                     My Notes
                   </Link>
                </li>
             </ul>
