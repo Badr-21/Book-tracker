@@ -1,0 +1,37 @@
+.my-notes-container {
+  width: 100%;
+  padding: 1rem 2rem;
+}
+.my-notes-container .book-note {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  row-gap: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.my-notes-container .book-note .image-book-note img {
+  width: 8rem;
+}
+.my-notes-container .book-note .text-book-note {
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+.my-notes-container .no-note-found {
+  height: calc(100vh - 10.5rem);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003147;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 0;
+       column-gap: 0;
+  row-gap: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}/*# sourceMappingURL=myNotes.css.map */

@@ -1,0 +1,29 @@
+@use "../mixins" as *;
+@use "../fonts" as *;
+@use "../colors" as *;
+
+.my-notes-container {
+   width: 100%;
+   padding: 1rem 2rem;
+   .book-note {
+      margin-bottom: 1rem;
+      @include flexbox(flex-start, flex-start, 2rem);
+      .image-book-note {
+         img {
+            width: 8rem;
+         }
+      }
+      .text-book-note {
+         padding: 1rem;
+         font-size: 1.2rem;
+      }
+   }
+   .no-note-found {
+      height: calc(100vh - 10.5rem);
+      font-size: 2rem;
+      font-weight: $font-700;
+      color: $Very-dark-blue;
+      text-align: center;
+      @include flexbox(center, center);
+   }
+}
