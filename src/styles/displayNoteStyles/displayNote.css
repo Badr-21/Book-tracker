@@ -1,0 +1,23 @@
+.display-note-container {
+  width: 35%;
+  padding: 1rem 0 0 3rem;
+  color: #003147;
+  font-weight: 500;
+}
+.display-note-container .number-of-notes {
+  margin-bottom: 1rem;
+}
+.display-note-container .last-note .last-note-date-page {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  row-gap: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.display-note-container .last-note .last-note-text {
+  margin-bottom: 1rem;
+}/*# sourceMappingURL=displayNote.css.map */
