@@ -8,7 +8,10 @@ import BooksReadingNow from "./components/BooksReadingNow";
 import BooksFavorite from "./components/BooksFavorite";
 import BooksToRead from "./components/BooksToRead";
 import BooksHaveRead from "./components/BooksHaveRead";
+import MyNotes from "./components/MyNotes";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AllNotesBook from "./components/AllNotesBook";
 
 export const readingNowBooksContext = createContext();
 export const favoriteBooksContext = createContext();
@@ -18,12 +21,24 @@ export const haveReadBooksContext = createContext();
 function App() {
    const [darkMode, setDarkMode] = useState(false);
    const [data, setData] = useState();
-   const [bookId, setBookId] = useState("");
    const [bookDetails, setBookDetails] = useState();
-   const [readingNowBooks, setReadingNowBooks] = useState([]);
-   const [favoriteBooks, setFavoriteBooks] = useState([]);
-   const [toReadBooks, setToReadBooks] = useState([]);
-   const [haveReadBooks, setHaveReadBooks] = useState([]);
+
+   const getLocalStorage = (name) => {
+      if (localStorage.getItem(name)) {
+         return JSON.parse(localStorage.getItem(name));
+      } else {
+         return [];
+      }
+   };
+
+   const [readingNowBooks, setReadingNowBooks] = useState(() =>
+      getLocalStorage("reading now books")
+   );
+   const [favoriteBooks, setFavoriteBooks] = useState(() => getLocalStorage("favorite books"));
+   const [toReadBooks, setToReadBooks] = useState(() => getLocalStorage("to read books"));
+   const [haveReadBooks, setHaveReadBooks] = useState(() => getLocalStorage("have read books"));
+   const [allBooks, setAllBooks] = useState(() => getLocalStorage("all books"));
+   const [allNotes, setAllNotes] = useState(() => getLocalStorage("all notes"));
 
    return (
       <Router>
@@ -38,11 +53,10 @@ function App() {
                               path="/"
                               element={
                                  <Home
-                                    bookId={bookId}
-                                    setBookId={setBookId}
                                     darkMode={darkMode}
                                     data={data}
                                     setData={setData}
+                                    setBookDetails={setBookDetails}
                                  />
                               }
                            />
@@ -51,40 +65,81 @@ function App() {
                                  index
                                  element={
                                     <MyBooks
-                                       haveReadBooks={haveReadBooks}
-                                       setHaveReadBooks={setHaveReadBooks}
                                        darkMode={darkMode}
-                                       bookId={bookId}
-                                       setBookId={setBookId}
+                                       setBookDetails={setBookDetails}
+                                       allBooks={allBooks}
                                     />
                                  }
                               ></Route>
-                              <Route
-                                 path="booksreadingnow"
-                                 element={<BooksReadingNow darkMode={darkMode} />}
-                              />
+                              <Route path="booksreadingnow">
+                                 <Route
+                                    index
+                                    element={
+                                       <BooksReadingNow
+                                          darkMode={darkMode}
+                                          allNotes={allNotes}
+                                          setAllNotes={setAllNotes}
+                                          setBookDetails={setBookDetails}
+                                       />
+                                    }
+                                 />
+                                 <Route
+                                    path=":id"
+                                    element={
+                                       <AllNotesBook
+                                          darkMode={darkMode}
+                                          allNotes={allNotes}
+                                          setAllNotes={setAllNotes}
+                                       />
+                                    }
+                                 ></Route>
+                              </Route>
                               <Route
                                  path="favoritebooks"
-                                 element={<BooksFavorite darkMode={darkMode} />}
+                                 element={
+                                    <BooksFavorite
+                                       darkMode={darkMode}
+                                       setBookDetails={setBookDetails}
+                                    />
+                                 }
                               />
                               <Route
                                  path="bookstoread"
-                                 element={<BooksToRead darkMode={darkMode} />}
+                                 element={
+                                    <BooksToRead
+                                       darkMode={darkMode}
+                                       setBookDetails={setBookDetails}
+                                    />
+                                 }
                               />
                               <Route
                                  path="bookshaveread"
-                                 element={<BooksHaveRead darkMode={darkMode} />}
+                                 element={
+                                    <BooksHaveRead
+                                       darkMode={darkMode}
+                                       setBookDetails={setBookDetails}
+                                    />
+                                 }
                               />
                            </Route>
+                           <Route
+                              path="mynotes"
+                              element={
+                                 <MyNotes
+                                    allNotes={allNotes}
+                                    setAllNotes={setAllNotes}
+                                    darkMode={darkMode}
+                                 />
+                              }
+                           />
                            <Route
                               path="searchedbook/:booktitle"
                               element={
                                  <Searched
-                                    bookId={bookId}
-                                    bookDetails={bookDetails}
-                                    setBookDetails={setBookDetails}
                                     darkMode={darkMode}
-                                    data={data}
+                                    bookDetails={bookDetails}
+                                    allBooks={allBooks}
+                                    setAllBooks={setAllBooks}
                                  />
                               }
                            />
