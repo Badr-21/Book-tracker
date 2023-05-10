@@ -71,6 +71,17 @@ function MyBooks({ darkMode, setBookDetails, allBooks }) {
                      </Link>
                   </li>
                </ul>
+               <p className="number-of-all-books">
+                  All books
+                  <span>
+                     {` (${
+                        readingNowBooks.length +
+                        favoriteBooks.length +
+                        toReadBooks.length +
+                        haveReadBooks.length
+                     })`}
+                  </span>
+               </p>
             </nav>
          </section>
          <section className="display-books">
