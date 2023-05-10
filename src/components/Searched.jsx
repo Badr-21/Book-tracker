@@ -6,7 +6,7 @@ import BookToReadIcon from "../assets/book-to-read-icon.svg";
 import BookToReadIconDarkMode from "../assets/book-to-read-icon-darkmode.svg";
 import BookHaveReadIcon from "../assets/book-have-read-icon.svg";
 import BookHaveReadIconDarMode from "../assets/book-have-read-icon-darkmode.svg";
-import "../styles/searchStyles/searchedStyles.css";
+import "../styles/searchedStyles/searchedStyles.css";
 import {
    readingNowBooksContext,
    favoriteBooksContext,
@@ -175,7 +175,7 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks }) {
                      <span>Published date: </span>
                      {bookDetails.volumeInfo.publishedDate}
                   </p>
-                  <p className="searched-plublished-date">
+                  <p className="searched-plublished-page">
                      <span>Pages: </span>
                      {bookDetails.volumeInfo.pageCount}
                   </p>
