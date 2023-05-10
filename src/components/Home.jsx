@@ -115,7 +115,7 @@ function Home({ darkMode, data, setData, setBookDetails }) {
                                 <p className="description">{book.volumeInfo.description}</p>
                                 <Link
                                    to={`searchedbook/${book.id}`}
-                                   style={{ textDecoration: "none" }}
+                                   style={{ textDecoration: "none", cursor: "auto" }}
                                 >
                                    <p className="see-more" id={book.id} onClick={handleSeeMore}>
                                       See more
