@@ -3,20 +3,79 @@
 @use "../colors" as *;
 
 .display-note-container {
-   width: 35%;
-   padding: 1rem 0 0 3rem;
-   color: $Very-dark-blue;
+   width: 33%;
+   padding: 2rem 0 0 2rem;
    font-weight: $font-500;
-   .number-of-notes {
-      margin-bottom: 1rem;
-   }
-   .last-note {
-      .last-note-date-page {
+   transition: 0.3s;
+   .selected-book-note {
+      .number-of-notes {
          margin-bottom: 1rem;
-         @include flexbox(flex-start, flex-start, 1rem);
+         color: $Very-dark-blue;
+         font-size: 1.3rem;
+         font-weight: $font-500;
       }
-      .last-note-text {
-         margin-bottom: 1rem;
+      .last-note {
+         .last-note-date-page {
+            margin-bottom: 1rem;
+            color: $Very-dark-blue;
+            font-size: 1.2rem;
+            font-weight: $font-500;
+            @include flexbox(flex-start, center, 1rem);
+            > p {
+               color: $Black;
+               font-size: 1rem;
+            }
+         }
+         .last-note-text {
+            margin-bottom: 1rem;
+            color: $Black;
+         }
+      }
+      .see-all-notes {
+         font-size: 1.1rem;
+         font-weight: $font-700;
+         color: $Very-dark-blue;
+      }
+   }
+   .unselected-book-note {
+      height: 15rem;
+      color: $Very-dark-blue;
+      @include flexbox(center, center);
+   }
+}
+
+.display-note-container.dark-mode {
+   .selected-book-note {
+      .number-of-notes {
+         color: $Turquoise;
+      }
+      .last-note {
+         .last-note-date-page {
+            color: $Turquoise;
+            > p {
+               color: $White;
+            }
+         }
+         .last-note-text {
+            color: $White;
+         }
+      }
+      .see-all-notes {
+         color: $Turquoise;
+      }
+   }
+   .unselected-book-note {
+      color: $Turquoise;
+   }
+}
+
+@media (hover: hover) {
+   .display-note-container {
+      .selected-book-note {
+         .see-all-notes:hover {
+            cursor: pointer;
+            text-decoration: underline;
+         }
       }
    }
 }

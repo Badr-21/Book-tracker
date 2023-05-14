@@ -1,15 +1,15 @@
 .write-note-container {
-  width: 65%;
+  width: 67%;
   transition: 0.3s;
 }
 .write-note-container .current-book {
   width: 100%;
-  margin: 1rem 0 1rem;
+  margin: 1.5rem 0 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
-  -moz-column-gap: 0rem;
-       column-gap: 0rem;
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
   row-gap: 0;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -36,12 +36,12 @@
   font-weight: 500;
 }
 .write-note-container .current-book .current-book-text .input-range {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
+  -moz-column-gap: 0;
+       column-gap: 0;
   row-gap: 0;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -50,49 +50,58 @@
   width: 35rem;
 }
 .write-note-container .current-book .current-book-text .input-range .page-number {
+  width: 5rem;
   font-weight: 500;
   color: #003147;
+  text-align: center;
 }
 .write-note-container .current-book .current-book-text .textarea-note {
   width: 35rem;
   height: 7.5rem;
+  padding: 0 0.5rem;
   margin-bottom: 0.5rem;
   color: #003147;
-  border: 0.1rem solid #003147;
+  border: 0.15rem solid #003147;
   outline: none;
   resize: none;
   font-size: 1rem;
   transition: 0.3s;
 }
-.write-note-container .current-book .current-book-text .button-save {
+.write-note-container .current-book .current-book-text .characters-and-button-save {
   width: 35rem;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   -moz-column-gap: 0;
        column-gap: 0;
   row-gap: 0;
   flex-direction: row;
   flex-wrap: nowrap;
 }
-.write-note-container .current-book .current-book-text .button-save button {
+.write-note-container .current-book .current-book-text .characters-and-button-save .characters {
+  color: #003147;
+}
+.write-note-container .current-book .current-book-text .characters-and-button-save .characters span {
+  font-weight: 500;
+}
+.write-note-container .current-book .current-book-text .characters-and-button-save button {
   width: 5rem;
   padding: 0.6rem 0;
   background-color: #003147;
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
   font-weight: 700;
   outline: none;
   border: none;
   border-radius: 0.5rem;
 }
 .write-note-container .empty-book {
-  width: inherit;
-  margin: 1rem 0 1.5rem;
+  width: 100%;
+  margin: 1.5rem 0 0;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
   row-gap: 0;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -111,8 +120,10 @@
   flex-wrap: nowrap;
 }
 .write-note-container .empty-book .empty-book-image p {
+  width: inherit;
   font-size: 0.8rem;
   color: #003147;
+  text-align: center;
 }
 .write-note-container .empty-book .empty-book-text .empty-book-title-and-authors {
   color: #003147;
@@ -127,7 +138,7 @@
   margin-bottom: 0.5rem;
 }
 .write-note-container .empty-book .empty-book-text .empty-input-range {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -143,9 +154,10 @@
 .write-note-container .empty-book .empty-book-text .empty-textarea-note {
   width: 35rem;
   height: 7.5rem;
+  padding: 0 0.5rem;
   margin-bottom: 0.5rem;
-  background-color: hsl(0, 0%, 93%);
-  border: 0.1rem solid #003147;
+  background-color: #ededed;
+  border: 0.15rem solid #003147;
   font-size: 0.9rem;
   outline: none;
   resize: none;
@@ -174,7 +186,7 @@
   width: 5rem;
   padding: 0.6rem 0;
   background-color: #003147;
-  color: hsl(0, 0%, 100%);
+  color: #ffffff;
   font-weight: 700;
   outline: none;
   border: none;
@@ -188,13 +200,16 @@
   color: #66b8ff;
 }
 .write-note-container.dark-mode .current-book .textarea-note {
-  background-color: hsl(240, 9%, 9%);
-}
-.write-note-container.dark-mode .current-book .textarea-note::-moz-placeholder {
+  background-color: #151519;
+  border-color: #66b8ff;
   color: #66b8ff;
 }
-.write-note-container.dark-mode .current-book .textarea-note::placeholder {
+.write-note-container.dark-mode .current-book .characters-and-button-save .characters {
   color: #66b8ff;
+}
+.write-note-container.dark-mode .current-book .characters-and-button-save > button {
+  background-color: #66b8ff;
+  color: #1f1f1f;
 }
 .write-note-container.dark-mode .empty-book .empty-book-image p {
   color: #66b8ff;
@@ -203,7 +218,7 @@
   color: #66b8ff;
 }
 .write-note-container.dark-mode .empty-book .empty-book-text .empty-textarea-note {
-  background-color: hsl(240, 9%, 9%);
+  background-color: #151519;
   border-color: #66b8ff;
 }
 .write-note-container.dark-mode .empty-book .empty-book-text .empty-textarea-note::-moz-placeholder {
@@ -212,14 +227,14 @@
 .write-note-container.dark-mode .empty-book .empty-book-text .empty-textarea-note::placeholder {
   color: #66b8ff;
 }
-.write-note-container.dark-mode .empty-book .empty-book-text .disabled-button-save button {
+.write-note-container.dark-mode .empty-book .empty-book-text .disabled-button-save > button {
   background-color: #66b8ff;
-  color: hsl(0, 0%, 12%);
+  color: #1f1f1f;
 }
 
 @media (hover: hover) {
   .write-note-container .current-book .input-range input,
-  .write-note-container .current-book .button-save button {
+  .write-note-container .current-book .characters-and-button-save button {
     cursor: pointer;
   }
   .write-note-container .empty-book .empty-input-range input,

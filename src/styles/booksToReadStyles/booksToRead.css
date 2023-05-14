@@ -2,7 +2,7 @@
   width: 100%;
   height: calc(100vh - 4.5rem);
   padding: 0 2rem;
-  background-color: hsl(0, 0%, 100%);
+  background-color: #ffffff;
   transition: 0.3s;
 }
 .books-to-read-container .category-book {
@@ -63,7 +63,7 @@
 }
 
 .books-to-read-container.dark-mode {
-  background-color: hsl(0, 0%, 12%);
+  background-color: #1f1f1f;
 }
 .books-to-read-container.dark-mode h3 {
   color: #66b8ff;

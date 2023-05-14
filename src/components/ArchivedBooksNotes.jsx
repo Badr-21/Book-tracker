@@ -3,7 +3,8 @@ import "../styles/archivedBooksNotesStyles/archivedBooksNotes.css";
 import allNotesIcon from "../assets/all-notes-icon.svg";
 import allNotesIconDarkMode from "../assets/all-notes-icon-darkmode.svg";
 import { Link } from "react-router-dom";
-function ArchivedBooksNotes({ darkMode, archivedBookNotes, setArchivedBookNotes }) {
+
+function ArchivedBooksNotes({ darkMode, archivedBookNotes }) {
    useEffect(() => {
       if (archivedBookNotes) {
          localStorage.setItem("archived book notes", JSON.stringify(archivedBookNotes));

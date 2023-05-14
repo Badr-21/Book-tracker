@@ -1,16 +1,7 @@
-import Back from "./Back";
-import "../styles/allArchivedBooksNotesStyles/allArchivedBooksNotes.css";
-
 import { useEffect, useState } from "react";
+import "../styles/allArchivedBooksNotesStyles/allArchivedBooksNotes.css";
 import { useLocation } from "react-router-dom";
-import {
-   deleteOneItemAlert,
-   deleteOneItemConfirmed,
-   deleteAllItemsAlert,
-   deleteAllItemsConfirm,
-} from "./ConfirmAlert";
 import { motion } from "framer-motion";
-import Toast, { notifySuccessfullyEdited } from "./Toast";
 
 function AllArchivedBooksNotes({ darkMode, archivedBookNotes }) {
    const [singleArchivedBookNotes, setArchivedSingleBookNotes] = useState();
@@ -97,12 +88,11 @@ function AllArchivedBooksNotes({ darkMode, archivedBookNotes }) {
                      No note found for this book.
                      <br />
                      <br />
-                     Go to the Reading now books category and write a note.
+                     Go to the Reading now books category and archive a book to see its notes.
                   </p>
                )}
             </section>
          </article>
-         <Toast darkMode={darkMode} />
       </motion.main>
    );
 }

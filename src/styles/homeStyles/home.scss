@@ -44,23 +44,35 @@
             .form {
                width: 100%;
                @include flexbox(space-between, center);
-               input {
-                  width: 27.5rem;
-                  padding: 0.75rem;
+               .search-input {
+                  width: 24.5rem;
+                  padding: 0 1rem;
                   border-radius: 0.5rem;
-                  outline: none;
                   border: 0.1rem solid $Very-dark-blue;
-                  color: $Very-dark-blue;
-                  font-size: 1rem;
                   background-color: $Very-light-gray;
                   transition: 0.3s;
-                  &::placeholder {
+                  @include flexbox(flex-start, center, 0.5rem);
+                  input {
+                     width: 22.5rem;
+                     padding: 0.75rem 0;
+                     outline: none;
+                     border: none;
+                     border-radius: 0.5rem;
                      color: $Very-dark-blue;
                      font-size: 1rem;
+                     background-color: $Very-light-gray;
+                     transition: 0.3s;
+                     &::placeholder {
+                        color: $Very-dark-blue;
+                        font-size: 1rem;
+                     }
+                  }
+                  img {
+                     width: 2rem;
                   }
                }
                .search {
-                  width: 8rem;
+                  width: 6rem;
                   padding: 0.75rem 0;
                   border: none;
                   border-radius: 0.5rem;
@@ -83,10 +95,7 @@
          padding-right: 1rem;
          border-radius: 0.5rem;
          box-shadow: 0rem 0.1rem 0.3rem rgba(128, 128, 128, 0.3);
-         &:hover {
-            scale: 1.1;
-            transition: 0.3s;
-         }
+         transition: 0.3s;
          @include flexbox(flex-start, flex-start, 1rem);
          .book-image {
             height: 100%;
@@ -125,13 +134,19 @@
                width: fit-content;
                color: $Blue;
                font-size: 0.8rem;
-               cursor: pointer;
-               &:hover {
-                  text-decoration: underline;
-               }
             }
          }
       }
+   }
+   .arrow-up {
+      width: 2.5rem;
+      position: fixed;
+      bottom: 1rem;
+      right: -2.5rem;
+   }
+
+   .fixed {
+      right: 1rem;
    }
 }
 
@@ -145,12 +160,15 @@
          .get-started {
             color: $Turquoise;
             .form {
-               input {
+               .search-input {
                   background-color: $Dark-gray;
                   border-color: $Turquoise;
-                  color: $Turquoise;
-                  &::placeholder {
+                  input {
+                     background-color: $Dark-gray;
                      color: $Turquoise;
+                     &::placeholder {
+                        color: $Turquoise;
+                     }
                   }
                }
                .search {
@@ -175,6 +193,41 @@
                color: $White;
             }
          }
+      }
+   }
+}
+
+@media (hover: hover) {
+   .home-container {
+      .hero {
+         .hero-text {
+            .get-started {
+               .form {
+                  .search:hover {
+                     cursor: pointer;
+                     opacity: 0.9;
+                  }
+               }
+            }
+         }
+      }
+      .books {
+         .book {
+            &:hover {
+               scale: 1.1;
+            }
+            .book-text {
+               .see-more:hover {
+                  cursor: pointer;
+                  text-decoration: underline;
+               }
+            }
+         }
+      }
+      .arrow-up:hover {
+         scale: 1.1;
+         opacity: 0.9;
+         cursor: pointer;
       }
    }
 }

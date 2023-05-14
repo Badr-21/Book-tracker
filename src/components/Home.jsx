@@ -1,12 +1,19 @@
+import { useEffect, useRef, useState } from "react";
 import "../styles/homeStyles/home.css";
 import Illustration from "../assets/Illustration.svg";
 import searchMagnifyingGlassIcon from "../assets/search-magnifying-glass-icon.svg";
 import searchMagnifyingGlassIconDarMode from "../assets/search-magnifying-glass-icon-darkmode.svg";
-import { useState } from "react";
+import arrowUpIcon from "../assets/arrow-up-icon.svg";
+import arrowUpIconDarkMode from "../assets/arrow-up-icon-darkmode.svg";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Home({ darkMode, data, setData, setBookDetails }) {
    const [query, setQuery] = useState("");
+   const [result, setResult] = useState(false);
+   const [lastScrollY, setLastScrollY] = useState(0);
+   const [show, setShow] = useState(false);
+   const booksRef = useRef();
 
    const APP_KEY = "AIzaSyB2D5niYoZfSoxTy4WSfsBmWQR9cvpNJ9A";
    const fetchData = async () => {
@@ -16,39 +23,74 @@ function Home({ darkMode, data, setData, setBookDetails }) {
          )
             .then((response) => response.json())
             .then((result) => {
-               const books = result.items
+               result.items
                   .filter((book) => book.volumeInfo.pageCount && book.volumeInfo.title)
                   .map((book) => {
                      return book;
                   });
-               console.log(books);
                setData(result.items);
             });
       } catch (error) {
-         console.log(error);
+         console.error(error);
       }
+   };
+
+   const scrollTo = () => {
+      window.scrollTo({
+         top: booksRef.current.offsetTop,
+         behavior: "smooth",
+      });
+   };
+
+   const showArrowUp = () => {
+      if (window.scrollY > lastScrollY) {
+         setShow(true);
+      } else {
+         setShow(false);
+      }
+      setLastScrollY(window.scrollY);
    };
 
    const handleInput = (e) => {
       setQuery(e.target.value);
    };
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
-      fetchData();
+   const handleSubmit = async (e) => {
+      setResult(false);
+      await e.preventDefault();
+      await fetchData();
+      setResult(true);
    };
 
    const handleSeeMore = (e) => {
-      console.log(e.target.dataset.id);
-      console.log(e.target.id);
       const bookfiltered = data.filter((book) => {
          return book.id === e.target.id;
       });
       setBookDetails(...bookfiltered);
    };
 
+   useEffect(() => {
+      if (result) {
+         scrollTo();
+      }
+   }, [result]);
+
+   useEffect(() => {
+      window.addEventListener("scroll", showArrowUp);
+      return () => {
+         window.removeEventListener("scroll", showArrowUp);
+      };
+   }, [lastScrollY]);
+
    return (
-      <main className={darkMode ? "home-container dark-mode " : "home-container"}>
+      <motion.main
+         className={darkMode ? "home-container dark-mode " : "home-container"}
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{
+            opacity: 0,
+         }}
+      >
          <article className="hero">
             <section className="hero-text">
                <div className="quote">
@@ -87,6 +129,7 @@ function Home({ darkMode, data, setData, setBookDetails }) {
             </section>
          </article>
          <article
+            ref={booksRef}
             className={darkMode ? "books dark-mode" : "books"}
             style={data ? { paddingBottom: "1rem" } : null}
          >
@@ -127,7 +170,13 @@ function Home({ darkMode, data, setData, setBookDetails }) {
                     })
                : null}
          </article>
-      </main>
+         <img
+            className={show ? "arrow-up fixed" : "arrow-up"}
+            src={darkMode ? arrowUpIconDarkMode : arrowUpIcon}
+            alt="arrow up icon"
+            onClick={scrollTo}
+         />
+      </motion.main>
    );
 }
 

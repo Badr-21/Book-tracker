@@ -1,17 +1,25 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { favoriteBooksContext } from "../App";
 import "../styles/booksFavoriteStyles/bookFavorite.css";
 import Back from "./Back";
+import { favoriteBooksContext } from "../App";
 import deleteIcon from "../assets/delete-Icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
 import deleteAllIcon from "../assets/delete-all-icon.svg";
 import deleteAllIconDarkMode from "../assets/delete-all-icon-darkmode.svg";
 import seeBookIcon from "../assets/see-book-icon.svg";
 import seeBookIconDarkMode from "../assets/see-book-icon-darkmode.svg";
+import { Link } from "react-router-dom";
+import {
+   deleteOneItemAlert,
+   deleteOneItemConfirmed,
+   deleteAllItemsAlert,
+   deleteAllItemsConfirm,
+} from "../components/ConfirmAlert";
+import { motion } from "framer-motion";
+import Toast, { notifyEmptyList } from "./Toast";
 
 function BooksFavorite({ darkMode, setBookDetails }) {
-   const { setFavoriteBooks, favoriteBooks } = useContext(favoriteBooksContext);
+   const { favoriteBooks, setFavoriteBooks } = useContext(favoriteBooksContext);
 
    const SeeFavoriteBooks = (e) => {
       const seeBook = favoriteBooks.filter((book) => {
@@ -21,16 +29,30 @@ function BooksFavorite({ darkMode, setBookDetails }) {
    };
 
    const deleteFavoriteBooks = (e) => {
-      if (favoriteBooks.length > 1) {
-         const nonDeletedBooks = favoriteBooks.filter((book) => book.id !== e.target.id);
-         setFavoriteBooks(nonDeletedBooks);
-      } else {
-         setFavoriteBooks([]);
-      }
+      deleteOneItemAlert(darkMode, "book").then((result) => {
+         if (result.isConfirmed) {
+            if (favoriteBooks.length > 1) {
+               const nonDeletedBooks = favoriteBooks.filter((book) => book.id !== e.target.id);
+               setFavoriteBooks(nonDeletedBooks);
+            } else {
+               setFavoriteBooks([]);
+            }
+            deleteOneItemConfirmed(darkMode, "book");
+         }
+      });
    };
 
    const deleteAllFavoriteBooks = () => {
-      setFavoriteBooks([]);
+      if (favoriteBooks.length) {
+         deleteAllItemsAlert(darkMode, "books").then((result) => {
+            if (result.isConfirmed) {
+               setFavoriteBooks([]);
+               deleteAllItemsConfirm(darkMode, "books");
+            }
+         });
+      } else {
+         notifyEmptyList(' "favorite books" ');
+      }
    };
 
    useEffect(() => {
@@ -40,8 +62,13 @@ function BooksFavorite({ darkMode, setBookDetails }) {
    }, [favoriteBooks]);
 
    return (
-      <main
+      <motion.main
          className={darkMode ? "books-favorite-container dark-mode" : "books-favorite-container"}
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{
+            opacity: 0,
+         }}
       >
          <Back darkMode={darkMode} />
          <h3 className="category-book">
@@ -52,7 +79,7 @@ function BooksFavorite({ darkMode, setBookDetails }) {
                onClick={deleteAllFavoriteBooks}
             />
          </h3>
-         <div className="display-favorite-books">
+         <section className="display-favorite-books">
             {favoriteBooks
                ? favoriteBooks.map((book) => {
                     return (
@@ -81,8 +108,9 @@ function BooksFavorite({ darkMode, setBookDetails }) {
                     );
                  })
                : null}
-         </div>
-      </main>
+         </section>
+         <Toast />
+      </motion.main>
    );
 }
 

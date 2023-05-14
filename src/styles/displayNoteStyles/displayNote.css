@@ -1,23 +1,77 @@
 .display-note-container {
-  width: 35%;
-  padding: 1rem 0 0 3rem;
+  width: 33%;
+  padding: 2rem 0 0 2rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.display-note-container .selected-book-note .number-of-notes {
+  margin-bottom: 1rem;
   color: #003147;
+  font-size: 1.3rem;
   font-weight: 500;
 }
-.display-note-container .number-of-notes {
+.display-note-container .selected-book-note .last-note .last-note-date-page {
   margin-bottom: 1rem;
-}
-.display-note-container .last-note .last-note-date-page {
-  margin-bottom: 1rem;
+  color: #003147;
+  font-size: 1.2rem;
+  font-weight: 500;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   -moz-column-gap: 1rem;
        column-gap: 1rem;
   row-gap: 0;
   flex-direction: row;
   flex-wrap: nowrap;
 }
-.display-note-container .last-note .last-note-text {
+.display-note-container .selected-book-note .last-note .last-note-date-page > p {
+  color: #1f1f1f;
+  font-size: 1rem;
+}
+.display-note-container .selected-book-note .last-note .last-note-text {
   margin-bottom: 1rem;
+  color: #1f1f1f;
+}
+.display-note-container .selected-book-note .see-all-notes {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #003147;
+}
+.display-note-container .unselected-book-note {
+  height: 15rem;
+  color: #003147;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 0;
+       column-gap: 0;
+  row-gap: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.display-note-container.dark-mode .selected-book-note .number-of-notes {
+  color: #66b8ff;
+}
+.display-note-container.dark-mode .selected-book-note .last-note .last-note-date-page {
+  color: #66b8ff;
+}
+.display-note-container.dark-mode .selected-book-note .last-note .last-note-date-page > p {
+  color: #ffffff;
+}
+.display-note-container.dark-mode .selected-book-note .last-note .last-note-text {
+  color: #ffffff;
+}
+.display-note-container.dark-mode .selected-book-note .see-all-notes {
+  color: #66b8ff;
+}
+.display-note-container.dark-mode .unselected-book-note {
+  color: #66b8ff;
+}
+
+@media (hover: hover) {
+  .display-note-container .selected-book-note .see-all-notes:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }/*# sourceMappingURL=displayNote.css.map */

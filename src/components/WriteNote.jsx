@@ -1,7 +1,14 @@
 import { useRef, useEffect, useState } from "react";
 import "../styles/writeNoteStyles/writeNote.css";
+import Toast, { notifySuccessfullySaved } from "./Toast";
 
-function WriteNote({ currentBook, bookId, darkMode, allNotes, setAllNotes }) {
+function WriteNote({
+   currentBook,
+   bookId,
+   darkMode,
+   currentReadingBookNotes,
+   setCurrentReadingBookNotes,
+}) {
    const [notePage, setNotePage] = useState(0);
    const [noteText, setNoteText] = useState("");
    const [charactersLeft, setCharactersLeft] = useState(350);
@@ -50,8 +57,8 @@ function WriteNote({ currentBook, bookId, darkMode, allNotes, setAllNotes }) {
          currentBook: currentBook,
          editing: false,
       };
-      setAllNotes([note, ...allNotes]);
-      //for reverse
+      setCurrentReadingBookNotes([note, ...currentReadingBookNotes]);
+      notifySuccessfullySaved();
    };
 
    useEffect(() => {
@@ -132,6 +139,7 @@ function WriteNote({ currentBook, bookId, darkMode, allNotes, setAllNotes }) {
                </div>
             </section>
          )}
+         <Toast darkMode={darkMode} />
       </article>
    );
 }

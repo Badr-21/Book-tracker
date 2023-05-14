@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Home from "./Home";
 import MyBooks from "./MyBooks";
 import Searched from "./Searched";
@@ -8,10 +9,9 @@ import BooksHaveRead from "./BooksHaveRead";
 import BooksArchived from "./BooksArchived";
 import MyNotes from "./MyNotes";
 import AllCurrentReadingBooksNotes from "./AllCurrentReadingBooksNotes";
-import CurrentReadingBookNotes from "./CurrentReadingBookNotes";
+import CurrentReadingBooksNotes from "./CurrentReadingBooksNotes";
 import ArchivedBooksNotes from "./ArchivedBooksNotes";
 import AllArchivedBooksNotes from "./AllArchivedBooksNotes";
-import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { getLocalStorage } from "../App";
 import { AnimatePresence } from "framer-motion";
@@ -64,8 +64,6 @@ function AnimatedRoutes({ darkMode }) {
                            darkMode={darkMode}
                            currentReadingBookNotes={currentReadingBookNotes}
                            setCurrentReadingBookNotes={setCurrentReadingBookNotes}
-                           setBookDetails={setBookDetails}
-                           allBooks={allBooks}
                            setArchivedBooks={setArchivedBooks}
                            archivedBooks={archivedBooks}
                            archivedBookNotes={archivedBookNotes}
@@ -90,9 +88,12 @@ function AnimatedRoutes({ darkMode }) {
                      element={
                         <BooksArchived
                            darkMode={darkMode}
-                           setBookDetails={setBookDetails}
-                           setArchivedBooks={setArchivedBooks}
                            archivedBooks={archivedBooks}
+                           setArchivedBooks={setArchivedBooks}
+                           archivedBookNotes={archivedBookNotes}
+                           setArchivedBookNotes={setArchivedBookNotes}
+                           currentReadingBookNotes={currentReadingBookNotes}
+                           setCurrentReadingBookNotes={setCurrentReadingBookNotes}
                         />
                      }
                   />
@@ -102,7 +103,7 @@ function AnimatedRoutes({ darkMode }) {
                      <Route
                         index
                         element={
-                           <CurrentReadingBookNotes
+                           <CurrentReadingBooksNotes
                               currentReadingBookNotes={currentReadingBookNotes}
                               setCurrentReadingBookNotes={setCurrentReadingBookNotes}
                               darkMode={darkMode}
@@ -126,7 +127,6 @@ function AnimatedRoutes({ darkMode }) {
                         element={
                            <ArchivedBooksNotes
                               archivedBookNotes={archivedBookNotes}
-                              setArchivedBookNotes={setArchivedBookNotes}
                               darkMode={darkMode}
                            />
                         }

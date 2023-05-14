@@ -1,9 +1,11 @@
 .mybooks-container {
   width: 100%;
-  height: calc(100% - 4.5rem);
-  padding: 1rem 0 0;
-  background-color: hsl(0, 0%, 100%);
+  padding: 0 2rem;
+  background-color: #ffffff;
   transition: 0.3s;
+}
+.mybooks-container .books {
+  margin-top: 2rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -13,22 +15,17 @@
   flex-direction: row;
   flex-wrap: nowrap;
 }
-.mybooks-container .books-categories {
+.mybooks-container .books .books-categories {
   width: 12rem;
-  padding: 0 1rem;
 }
-.mybooks-container .books-categories .mybooks-nav ul li {
+.mybooks-container .books .books-categories .mybooks-nav ul li {
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.5rem 0;
   margin-bottom: 2rem;
   list-style: none;
 }
-.mybooks-container .books-categories .mybooks-nav ul li:hover {
-  scale: 1.1;
-  transition: 0.3s;
-}
-.mybooks-container .books-categories .mybooks-nav ul li .book-category {
+.mybooks-container .books .books-categories .mybooks-nav ul li .book-category {
   text-decoration: none;
   display: flex;
   justify-content: flex-start;
@@ -39,26 +36,33 @@
   flex-direction: row;
   flex-wrap: nowrap;
 }
-.mybooks-container .books-categories .mybooks-nav ul li .book-category img {
+.mybooks-container .books .books-categories .mybooks-nav ul li .book-category img {
   width: 1.5rem;
 }
-.mybooks-container .books-categories .mybooks-nav ul li .book-category p {
+.mybooks-container .books .books-categories .mybooks-nav ul li .book-category p {
   color: #003147;
 }
-.mybooks-container .display-books {
+.mybooks-container .books .books-categories .mybooks-nav .number-of-all-books {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #003147;
+}
+.mybooks-container .books .display-books {
   width: calc(100% - 12rem);
   height: 100%;
-  min-height: calc(100vh - 5.5rem);
+  min-height: calc(100vh - 9.1rem);
   padding: 1rem 1.5rem 0;
   border-left: 1px solid #003147;
 }
-.mybooks-container .display-books h3 {
+.mybooks-container .books .display-books h3 {
   margin-bottom: 1.5rem;
   font-weight: 700;
   color: #003147;
 }
-.mybooks-container .display-books > div {
+.mybooks-container .books .display-books > div {
+  padding-bottom: 1rem;
   margin-bottom: 3rem;
+  border-bottom: 0.1rem solid #003147;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -68,27 +72,37 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
-.mybooks-container .display-books > div img {
+.mybooks-container .books .display-books > div img {
   width: 8rem;
   height: 11rem;
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(128, 128, 128, 0.3), -0.1rem -0.1rem 0.5rem rgba(128, 128, 128, 0.3);
 }
 
 .mybooks-container.darkmode {
-  background-color: hsl(0, 0%, 12%);
+  background-color: #1f1f1f;
 }
-.mybooks-container.darkmode .books-categories .mybooks-nav ul li .book-category p {
+.mybooks-container.darkmode .books .books-categories .mybooks-nav ul li .book-category p {
   color: #66b8ff;
 }
-.mybooks-container.darkmode .display-books {
+.mybooks-container.darkmode .books .books-categories .mybooks-nav .number-of-all-books {
+  color: #66b8ff;
+}
+.mybooks-container.darkmode .books .display-books {
   border-left-color: #66b8ff;
 }
-.mybooks-container.darkmode .display-books h3 {
+.mybooks-container.darkmode .books .display-books h3 {
   color: #66b8ff;
+}
+.mybooks-container.darkmode .books .display-books > div {
+  border-color: #66b8ff;
 }
 
 @media (hover: hover) {
-  .display-books > div img:hover {
+  .mybooks-container .books .books-categories .mybooks-nav ul li:hover {
+    scale: 1.1;
+    transition: 0.3s;
+  }
+  .mybooks-container .books .display-books > div img:hover {
     cursor: pointer;
     scale: 1.1;
     transition: 0.3s;

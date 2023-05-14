@@ -1,7 +1,7 @@
+import "../styles/backStyles/back.css";
 import BackIcon from "../assets/back-icon.svg";
 import BackIconDarkMode from "../assets/back-icon-darkmode.svg";
 import { useNavigate } from "react-router-dom";
-import "../styles/backStyles/back.css";
 
 function Back({ darkMode }) {
    const navigate = useNavigate();

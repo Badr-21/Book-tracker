@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "../styles/allCurrentReadingBooksNotesStyles/allCurrentReadingBooksNotesStyles.css";
 import deleteIcon from "../assets/delete-Icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
@@ -5,7 +6,6 @@ import deleteAllIcon from "../assets/delete-all-icon.svg";
 import deleteAllIconDarkMode from "../assets/delete-all-icon-darkmode.svg";
 import noteEditIcon from "../assets/note-edit-icon.svg";
 import noteEditIconDarkMode from "../assets/note-edit-icon-darkmode.svg";
-import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
    deleteOneItemAlert,

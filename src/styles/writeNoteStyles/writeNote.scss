@@ -3,12 +3,12 @@
 @use "../colors" as *;
 
 .write-note-container {
-   width: 65%;
+   width: 67%;
    transition: 0.3s;
    .current-book {
       width: 100%;
-      margin: 1rem 0 1rem;
-      @include flexbox(space-between, flex-start, 0rem);
+      margin: 1.5rem 0 0;
+      @include flexbox(flex-start, flex-start, 3rem);
       .current-book-image {
          width: 11rem;
          height: 16.5rem;
@@ -33,30 +33,39 @@
             }
          }
          .input-range {
-            margin-bottom: 0.5rem;
-            @include flexbox(flex-start, center, 1rem);
+            margin-bottom: 1rem;
+            @include flexbox(flex-start, center);
             input {
                width: 35rem;
             }
             .page-number {
+               width: 5rem;
                font-weight: $font-500;
                color: $Very-dark-blue;
+               text-align: center;
             }
          }
          .textarea-note {
             width: 35rem;
             height: 7.5rem;
+            padding: 0 0.5rem;
             margin-bottom: 0.5rem;
             color: $Very-dark-blue;
-            border: 0.1rem solid $Very-dark-blue;
+            border: 0.15rem solid $Very-dark-blue;
             outline: none;
             resize: none;
             font-size: 1rem;
             transition: 0.3s;
          }
-         .button-save {
+         .characters-and-button-save {
             width: 35rem;
-            @include flexbox(flex-end, center);
+            @include flexbox(space-between, flex-start);
+            .characters {
+               color: $Very-dark-blue;
+               span {
+                  font-weight: $font-500;
+               }
+            }
             button {
                width: 5rem;
                padding: 0.6rem 0;
@@ -71,17 +80,19 @@
       }
    }
    .empty-book {
-      width: inherit;
-      margin: 1rem 0 1.5rem;
-      @include flexbox(flex-start, flex-start, 2rem);
+      width: 100%;
+      margin: 1.5rem 0 0;
+      @include flexbox(flex-start, flex-start, 3rem);
       .empty-book-image {
          width: 11rem;
          height: 16.5rem;
          box-shadow: 0.1rem 0.1rem 0.3rem #8080804d, -0.1rem -0.1rem 0.3rem #8080804d;
          @include flexbox(center, center);
          p {
+            width: inherit;
             font-size: 0.8rem;
             color: $Very-dark-blue;
+            text-align: center;
          }
       }
       .empty-book-text {
@@ -98,7 +109,7 @@
             }
          }
          .empty-input-range {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             @include flexbox(flex-start, center, 1rem);
             input {
                width: 35rem;
@@ -107,9 +118,10 @@
          .empty-textarea-note {
             width: 35rem;
             height: 7.5rem;
+            padding: 0 0.5rem;
             margin-bottom: 0.5rem;
             background-color: $Very-light-gray;
-            border: 0.1rem solid $Very-dark-blue;
+            border: 0.15rem solid $Very-dark-blue;
             font-size: 0.9rem;
             outline: none;
             resize: none;
@@ -151,8 +163,16 @@
       }
       .textarea-note {
          background-color: $Dark-gray;
-         &::placeholder {
+         border-color: $Turquoise;
+         color: $Turquoise;
+      }
+      .characters-and-button-save {
+         .characters {
             color: $Turquoise;
+         }
+         > button {
+            background-color: $Turquoise;
+            color: $Black;
          }
       }
    }
@@ -174,7 +194,7 @@
             }
          }
          .disabled-button-save {
-            button {
+            > button {
                background-color: $Turquoise;
                color: $Black;
             }
@@ -187,7 +207,7 @@
    .write-note-container {
       .current-book {
          .input-range input,
-         .button-save button {
+         .characters-and-button-save button {
             cursor: pointer;
          }
       }

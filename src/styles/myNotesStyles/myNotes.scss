@@ -4,26 +4,38 @@
 
 .my-notes-container {
    width: 100%;
-   padding: 1rem 2rem;
-   .book-note {
-      margin-bottom: 1rem;
+   min-height: calc(100vh - 4.5rem);
+   padding: 0 2rem 1rem;
+   background-color: $White;
+   transition: 0.3s;
+   .book-notes-selection {
+      margin: 1rem 0 2rem;
       @include flexbox(flex-start, flex-start, 2rem);
-      .image-book-note {
-         img {
-            width: 8rem;
-         }
-      }
-      .text-book-note {
-         padding: 1rem;
-         font-size: 1.2rem;
+      .link {
+         padding: 0.5rem;
+         text-decoration: none;
+         color: $Very-dark-blue;
+         border-radius: 0.5rem;
+         font-weight: $font-500;
       }
    }
-   .no-note-found {
-      height: calc(100vh - 10.5rem);
-      font-size: 2rem;
-      font-weight: $font-700;
-      color: $Very-dark-blue;
-      text-align: center;
-      @include flexbox(center, center);
+}
+
+.my-notes-container.dark-mode {
+   background-color: $Black;
+   .book-notes-selection {
+      .link {
+         color: $Turquoise;
+      }
+   }
+}
+
+@media (hover: hover) {
+   .my-notes-container {
+      .book-notes-selection {
+         .link:hover {
+            text-decoration: underline;
+         }
+      }
    }
 }

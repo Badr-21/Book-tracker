@@ -1,17 +1,25 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { toReadBooksContext } from "../App";
 import "../styles/booksToReadStyles/booksToRead.css";
 import Back from "./Back";
+import { toReadBooksContext } from "../App";
 import deleteIcon from "../assets/delete-Icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
 import deleteAllIcon from "../assets/delete-all-icon.svg";
 import deleteAllIconDarkMode from "../assets/delete-all-icon-darkmode.svg";
 import seeBookIcon from "../assets/see-book-icon.svg";
 import seeBookIconDarkMode from "../assets/see-book-icon-darkmode.svg";
+import { Link } from "react-router-dom";
+import {
+   deleteOneItemAlert,
+   deleteOneItemConfirmed,
+   deleteAllItemsAlert,
+   deleteAllItemsConfirm,
+} from "../components/ConfirmAlert";
+import { motion } from "framer-motion";
+import Toast, { notifyEmptyList } from "./Toast";
 
 function BooksToRead({ darkMode, setBookDetails }) {
-   const { setToReadBooks, toReadBooks } = useContext(toReadBooksContext);
+   const { toReadBooks, setToReadBooks } = useContext(toReadBooksContext);
 
    const SeeToReadBooks = (e) => {
       const seeBook = toReadBooks.filter((book) => {
@@ -21,16 +29,30 @@ function BooksToRead({ darkMode, setBookDetails }) {
    };
 
    const deleteToReadBooks = (e) => {
-      if (toReadBooks.length > 1) {
-         const nonDeletedBooks = toReadBooks.filter((book) => book.id !== e.target.id);
-         setToReadBooks(nonDeletedBooks);
-      } else {
-         setToReadBooks([]);
-      }
+      deleteOneItemAlert(darkMode, "book").then((result) => {
+         if (result.isConfirmed) {
+            if (toReadBooks.length > 1) {
+               const nonDeletedBooks = toReadBooks.filter((book) => book.id !== e.target.id);
+               setToReadBooks(nonDeletedBooks);
+            } else {
+               setToReadBooks([]);
+            }
+            deleteOneItemConfirmed(darkMode, "book");
+         }
+      });
    };
 
    const deleteAllToReadBooks = () => {
-      setToReadBooks([]);
+      if (toReadBooks.length) {
+         deleteAllItemsAlert(darkMode, "books").then((result) => {
+            if (result.isConfirmed) {
+               setToReadBooks([]);
+               deleteAllItemsConfirm(darkMode, "books");
+            }
+         });
+      } else {
+         notifyEmptyList(' "to read books" ');
+      }
    };
 
    useEffect(() => {
@@ -40,7 +62,14 @@ function BooksToRead({ darkMode, setBookDetails }) {
    }, [toReadBooks]);
 
    return (
-      <main className={darkMode ? "books-to-read-container dark-mode" : "books-to-read-container"}>
+      <motion.main
+         className={darkMode ? "books-to-read-container dark-mode" : "books-to-read-container"}
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{
+            opacity: 0,
+         }}
+      >
          <Back darkMode={darkMode} />
          <h3 className="category-book">
             To read Books
@@ -50,7 +79,7 @@ function BooksToRead({ darkMode, setBookDetails }) {
                onClick={deleteAllToReadBooks}
             />
          </h3>
-         <div className="display-to-read-books">
+         <section className="display-to-read-books">
             {toReadBooks
                ? toReadBooks.map((book) => {
                     return (
@@ -79,8 +108,9 @@ function BooksToRead({ darkMode, setBookDetails }) {
                     );
                  })
                : null}
-         </div>
-      </main>
+         </section>
+         <Toast />
+      </motion.main>
    );
 }
 

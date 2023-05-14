@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
-import { currentReadingContext } from "../App";
 import "../styles/booksCurrentReadingStyles/booksCurrentReading.css";
 import Back from "./Back";
+import { currentReadingContext } from "../App";
 import WriteNote from "./WriteNote";
 import DisplayNote from "./DispalyNote";
 import deleteIcon from "../assets/delete-Icon.svg";
@@ -232,14 +232,6 @@ function BooksCurrentReading({
                                 id={book.id}
                                 onClick={selectCurrentBook}
                              />
-                             {/* <Link to={`/searchedbook/${book.id}`}>
-                                <img
-                                   src={darkMode ? seeBookIconDarkMode : seeBookIcon}
-                                   alt="see book icon"
-                                   id={book.id}
-                                   onClick={SeeCurrentReadingBooks}
-                                />
-                             </Link> */}
                              <img
                                 src={darkMode ? BookArchivedIconDarMode : BookArchivedIcon}
                                 alt="see book icon"

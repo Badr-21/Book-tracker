@@ -1,4 +1,6 @@
+import { useEffect, useContext } from "react";
 import Back from "./Back";
+import { currentReadingContext } from "../App";
 import "../styles/booksArchivedStyles/booksArchived.css";
 import deleteIcon from "../assets/delete-Icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
@@ -9,8 +11,6 @@ import allNotesIconDarkMode from "../assets/all-notes-icon-darkmode.svg";
 import moveBackIcon from "../assets/move-back-icon.svg";
 import moveBackIconDarkMode from "../assets/move-back-icon-darkmode.svg";
 import { Link } from "react-router-dom";
-import { currentReadingContext } from "../App";
-import { useEffect, useContext } from "react";
 import {
    deleteOneItemAlert,
    deleteOneItemConfirmed,

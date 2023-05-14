@@ -1,6 +1,6 @@
 .back {
   padding: 0.5rem;
-  background-color: hsl(0, 0%, 100%);
+  background-color: #ffffff;
   border: 0.1rem solid #003147;
   border-radius: 0.5rem;
   font-size: 1.2rem;
@@ -22,7 +22,7 @@
 }
 
 .back.dark-mode {
-  background-color: hsl(0, 0%, 12%);
+  background-color: #1f1f1f;
   color: #66b8ff;
   border-color: #66b8ff;
 }
@@ -30,9 +30,9 @@
 @media (hover: hover) {
   .back:hover {
     cursor: pointer;
-    background-color: hsl(0, 0%, 93%);
+    background-color: #ededed;
   }
   .back.dark-mode:hover {
-    background-color: hsl(240, 9%, 9%);
+    background-color: #151519;
   }
 }/*# sourceMappingURL=back.css.map */

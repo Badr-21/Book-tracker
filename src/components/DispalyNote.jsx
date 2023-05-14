@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "../styles/displayNoteStyles/displayNote.css";
-function DisplayNote({ currentBook, allNotes, bookId, darkMode }) {
+import { Link } from "react-router-dom";
+function DisplayNote({ currentBook, currentReadingBookNotes, bookId, darkMode }) {
    const [displayNote, setDispalyNote] = useState();
    useEffect(() => {
       if (currentBook) {
-         localStorage.setItem(`all notes`, JSON.stringify(allNotes));
+         localStorage.setItem(
+            `current reading book notes`,
+            JSON.stringify(currentReadingBookNotes)
+         );
       }
-      const notes = allNotes.filter((note) => {
+      const notes = currentReadingBookNotes.filter((note) => {
          return note.bookId === bookId;
       });
       setDispalyNote(notes);
-   }, [currentBook, allNotes]);
+   }, [currentBook, currentReadingBookNotes]);
    return (
       <main className={darkMode ? "display-note-container dark-mode" : "display-note-container"}>
          {currentBook ? (
@@ -33,7 +36,7 @@ function DisplayNote({ currentBook, allNotes, bookId, darkMode }) {
                               ? { color: "#66b8ff", textDecoration: "none", cursor: "auto" }
                               : { color: "#003147", textDecoration: "none", cursor: "auto" }
                         }
-                        to={bookId}
+                        to={`/mynotes/currentreadingbooksnotes/${bookId}`}
                      >
                         <p className="see-all-notes">See all notes</p>
                      </Link>

@@ -13,7 +13,8 @@ import {
    deleteAllItemsAlert,
    deleteAllItemsConfirm,
 } from "./ConfirmAlert";
-function CurrentReadingBookNotes({
+
+function CurrentReadingBooksNotes({
    currentReadingBookNotes,
    setCurrentReadingBookNotes,
    darkMode,
@@ -121,4 +122,4 @@ function CurrentReadingBookNotes({
    );
 }
 
-export default CurrentReadingBookNotes;
+export default CurrentReadingBooksNotes;

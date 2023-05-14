@@ -1,7 +1,8 @@
-import logo from "../assets/book-tracker-logo.svg";
-import logoDarkMode from "../assets/book-tracker-logo-darkmode.svg";
 import "../styles/headerStyles/header.css";
+import logo from "../assets/logo.svg";
+import logoDarkMode from "../assets/logo-darkmode.svg";
 import { Link } from "react-router-dom";
+
 function Header({ darkMode, setDarkMode }) {
    const handleDarkMode = () => {
       setDarkMode(!darkMode);
@@ -46,7 +47,7 @@ function Header({ darkMode, setDarkMode }) {
                            ? { color: "#66b8ff", textDecoration: "none" }
                            : { color: "#003147", textDecoration: "none" }
                      }
-                     to="mynotes"
+                     to="mynotes/currentreadingbooksnotes"
                   >
                      My Notes
                   </Link>

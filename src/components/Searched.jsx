@@ -1,88 +1,33 @@
-import BookReadingNowIcon from "../assets/book-reading-now-icon.svg";
-import BookReadingNowIconDarkMode from "../assets/book-reading-now-icon-darkmode.svg";
+import { useContext, useEffect } from "react";
+import "../styles/searchedStyles/searchedStyles.css";
+import Back from "./Back";
+import BookCurrentReadingIcon from "../assets/book-current-reading-icon.svg";
+import BookCurrentReadingIconDarkMode from "../assets/book-current-reading-icon-darkmode.svg";
 import FavoriteBookIcon from "../assets/favorite-book-icon.svg";
 import FavoriteBookIconDarkMode from "../assets/favorite-book-icon-darkmode.svg";
 import BookToReadIcon from "../assets/book-to-read-icon.svg";
 import BookToReadIconDarkMode from "../assets/book-to-read-icon-darkmode.svg";
 import BookHaveReadIcon from "../assets/book-have-read-icon.svg";
 import BookHaveReadIconDarMode from "../assets/book-have-read-icon-darkmode.svg";
-import "../styles/searchedStyles/searchedStyles.css";
 import {
-   readingNowBooksContext,
+   currentReadingContext,
    favoriteBooksContext,
    toReadBooksContext,
    haveReadBooksContext,
 } from "../App";
-import { useContext, useEffect } from "react";
-import Toast, { notifyAlreadyAdded, notifySuccessfullyAdded } from "./Toast";
-import Back from "./Back";
+import Toast, {
+   notifyAlreadyAdded,
+   notifySuccessfullyAdded,
+   notifyAlreadyArchivedBook,
+} from "./Toast";
+import { motion } from "framer-motion";
 
-function Searched({ darkMode, bookDetails, setAllBooks, allBooks }) {
-   const { readingNowBooks, setReadingNowBooks } = useContext(readingNowBooksContext);
+function Searched({ darkMode, bookDetails, setAllBooks, allBooks, archivedBooks }) {
+   const { currentReadingBooks, setCurrentReadingBooks } = useContext(currentReadingContext);
    const { favoriteBooks, setFavoriteBooks } = useContext(favoriteBooksContext);
    const { toReadBooks, setToReadBooks } = useContext(toReadBooksContext);
    const { haveReadBooks, setHaveReadBooks } = useContext(haveReadBooksContext);
 
-   const handleReadingNowBooks = () => {
-      if (readingNowBooks) {
-         const foundBook = readingNowBooks.find((book) => book.id === bookDetails.id);
-         if (foundBook) {
-            notifyAlreadyAdded('" Reading now "');
-         } else {
-            setReadingNowBooks([...readingNowBooks, bookDetails]);
-            notifySuccessfullyAdded('" Reading now "');
-         }
-      } else {
-         setReadingNowBooks([...readingNowBooks, bookDetails]);
-         notifySuccessfullyAdded('" Reading now "');
-      }
-      handleAllBooks();
-   };
-   const handleFavoriteBooks = () => {
-      if (favoriteBooks) {
-         const foundBook = favoriteBooks.find((book) => book.id === bookDetails.id);
-         if (foundBook) {
-            notifyAlreadyAdded('" Favorite "');
-         } else {
-            setFavoriteBooks([...favoriteBooks, bookDetails]);
-            notifySuccessfullyAdded('" Favorite "');
-         }
-      } else {
-         setFavoriteBooks([...favoriteBooks, bookDetails]);
-         notifySuccessfullyAdded('" Favorite "');
-      }
-      handleAllBooks();
-   };
-   const handleToReadBooks = () => {
-      if (toReadBooks) {
-         const foundBook = toReadBooks.find((book) => book.id === bookDetails.id);
-         if (foundBook) {
-            notifyAlreadyAdded('" To read "');
-         } else {
-            setToReadBooks([...toReadBooks, bookDetails]);
-            notifySuccessfullyAdded('" To read "');
-         }
-      } else {
-         setToReadBooks([...toReadBooks, bookDetails]);
-         notifySuccessfullyAdded('" To read "');
-      }
-      handleAllBooks();
-   };
-   const handleHaveReadBooks = () => {
-      if (haveReadBooks) {
-         const foundBook = haveReadBooks.find((book) => book.id === bookDetails.id);
-         if (foundBook) {
-            notifyAlreadyAdded('" Have read "');
-         } else {
-            setHaveReadBooks([...haveReadBooks, bookDetails]);
-            notifySuccessfullyAdded('" Have read "');
-         }
-      } else {
-         setHaveReadBooks([...haveReadBooks, bookDetails]);
-         notifySuccessfullyAdded('" Have read "');
-      }
-      handleAllBooks();
-   };
    const handleAllBooks = () => {
       if (allBooks) {
          const foundBook = allBooks.find((book) => book.id === bookDetails.id);
@@ -96,9 +41,38 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks }) {
       }
    };
 
+   const handleAddingBooks = (booksCategory, setBooksCategory, name) => {
+      if (booksCategory) {
+         const foundBook = booksCategory.find((book) => book.id === bookDetails.id);
+         if (foundBook) {
+            notifyAlreadyAdded(name);
+         } else {
+            setBooksCategory([...booksCategory, bookDetails]);
+            notifySuccessfullyAdded(name);
+         }
+      } else {
+         setBooksCategory([...booksCategory, bookDetails]);
+         notifySuccessfullyAdded(name);
+      }
+      handleAllBooks();
+   };
+
+   const handleCurrentReadingBooks = () => {
+      if (archivedBooks) {
+         const foundArchivedBooks = archivedBooks.find((book) => book.id === bookDetails.id);
+         if (foundArchivedBooks) {
+            notifyAlreadyArchivedBook();
+         } else {
+            handleAddingBooks(currentReadingBooks, setCurrentReadingBooks, '" Current reading "');
+         }
+      } else {
+         handleAddingBooks(currentReadingBooks, setCurrentReadingBooks, '" Current reading "');
+      }
+   };
+
    useEffect(() => {
-      if (readingNowBooks) {
-         localStorage.setItem("reading now books", JSON.stringify(readingNowBooks));
+      if (currentReadingBooks) {
+         localStorage.setItem("current reading books", JSON.stringify(currentReadingBooks));
       }
       if (favoriteBooks) {
          localStorage.setItem("favorite books", JSON.stringify(favoriteBooks));
@@ -112,26 +86,35 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks }) {
       if (allBooks) {
          localStorage.setItem("all books", JSON.stringify(allBooks));
       }
-   }, [readingNowBooks, favoriteBooks, toReadBooks, haveReadBooks]);
+   }, [currentReadingBooks, favoriteBooks, toReadBooks, haveReadBooks]);
 
    return (
-      <main className={darkMode ? "searched-container dark-mode" : "searched-container"}>
+      <motion.main
+         className={darkMode ? "searched-container dark-mode" : "searched-container"}
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{
+            opacity: 0,
+         }}
+      >
          <section className="back-and-add-to">
             <Back darkMode={darkMode} />
             <div className="add-to">
                <div className="add-to-reading-now">
                   <img
-                     src={darkMode ? BookReadingNowIconDarkMode : BookReadingNowIcon}
-                     alt="book reading now icon"
-                     onClick={handleReadingNowBooks}
+                     src={darkMode ? BookCurrentReadingIconDarkMode : BookCurrentReadingIcon}
+                     alt="book current reading icon"
+                     onClick={handleCurrentReadingBooks}
                   />
-                  <p>add to 'reading now'</p>
+                  <p>add to 'current reading'</p>
                </div>
                <div className="add-to-favotie">
                   <img
                      src={darkMode ? FavoriteBookIconDarkMode : FavoriteBookIcon}
                      alt="favorite book icon"
-                     onClick={handleFavoriteBooks}
+                     onClick={() =>
+                        handleAddingBooks(favoriteBooks, setFavoriteBooks, '" Favorite "')
+                     }
                   />
                   <p>add to 'favorite'</p>
                </div>
@@ -139,7 +122,7 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks }) {
                   <img
                      src={darkMode ? BookToReadIconDarkMode : BookToReadIcon}
                      alt="to read book icon"
-                     onClick={handleToReadBooks}
+                     onClick={() => handleAddingBooks(toReadBooks, setToReadBooks, '" To read "')}
                   />
                   <p>add to 'to read'</p>
                </div>
@@ -147,7 +130,9 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks }) {
                   <img
                      src={darkMode ? BookHaveReadIconDarMode : BookHaveReadIcon}
                      alt="have read book icon"
-                     onClick={handleHaveReadBooks}
+                     onClick={() =>
+                        handleAddingBooks(haveReadBooks, setHaveReadBooks, '" Have read "')
+                     }
                   />
                   <p>add to 'have read'</p>
                </div>
@@ -186,8 +171,8 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks }) {
                </section>
             </article>
          ) : null}
-         <Toast />
-      </main>
+         <Toast darkMode={darkMode} />
+      </motion.main>
    );
 }
 
