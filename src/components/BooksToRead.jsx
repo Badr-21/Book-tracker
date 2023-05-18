@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "../styles/booksToReadStyles/booksToRead.css";
 import Back from "./Back";
 import { toReadBooksContext } from "../App";
@@ -18,14 +18,20 @@ import {
 import { motion } from "framer-motion";
 import Toast, { notifyEmptyList } from "./Toast";
 
-function BooksToRead({ darkMode, setBookDetails }) {
+function BooksToRead({ darkMode }) {
    const { toReadBooks, setToReadBooks } = useContext(toReadBooksContext);
 
-   const SeeToReadBooks = (e) => {
-      const seeBook = toReadBooks.filter((book) => {
-         return book.id === e.target.id;
-      });
-      setBookDetails(...seeBook);
+   const booksRef = useRef();
+
+   const handleClickBook = (e) => {
+      if (e.target.nextElementSibling.style.bottom === "-1.8rem") {
+         e.target.nextElementSibling.style.bottom = "1.8rem";
+      } else {
+         for (let child of booksRef.current.childNodes) {
+            child.firstElementChild.nextElementSibling.style.bottom = "1.8rem";
+         }
+         e.target.nextElementSibling.style.bottom = "-1.8rem";
+      }
    };
 
    const deleteToReadBooks = (e) => {
@@ -79,7 +85,7 @@ function BooksToRead({ darkMode, setBookDetails }) {
                onClick={deleteAllToReadBooks}
             />
          </h3>
-         <section className="display-to-read-books">
+         <section className="display-to-read-books" ref={booksRef}>
             {toReadBooks
                ? toReadBooks.map((book) => {
                     return (
@@ -87,14 +93,13 @@ function BooksToRead({ darkMode, setBookDetails }) {
                           <img
                              src={book.volumeInfo.imageLinks.thumbnail}
                              alt={book.volumeInfo.title}
+                             onClick={handleClickBook}
                           />
                           <div className="see-and-delete-icons">
-                             <Link to={`/searchedbook/${book.id}`}>
+                             <Link to={`/searchedbook/${book.id}`} state={{ bookDetails: book }}>
                                 <img
                                    src={darkMode ? seeBookIconDarkMode : seeBookIcon}
                                    alt="see book icon"
-                                   id={book.id}
-                                   onClick={SeeToReadBooks}
                                 />
                              </Link>
                              <img

@@ -8,11 +8,13 @@ import arrowUpIconDarkMode from "../assets/arrow-up-icon-darkmode.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function Home({ darkMode, data, setData, setBookDetails }) {
+function Home({ darkMode }) {
    const [query, setQuery] = useState("");
    const [result, setResult] = useState(false);
    const [lastScrollY, setLastScrollY] = useState(0);
    const [show, setShow] = useState(false);
+   const [data, setData] = useState();
+
    const booksRef = useRef();
 
    const APP_KEY = "AIzaSyB2D5niYoZfSoxTy4WSfsBmWQR9cvpNJ9A";
@@ -35,9 +37,16 @@ function Home({ darkMode, data, setData, setBookDetails }) {
       }
    };
 
-   const scrollTo = () => {
+   const scrollToTopBook = () => {
       window.scrollTo({
          top: booksRef.current.offsetTop,
+         behavior: "smooth",
+      });
+   };
+
+   const scrollToTop = () => {
+      window.scrollTo({
+         top: 0,
          behavior: "smooth",
       });
    };
@@ -62,16 +71,9 @@ function Home({ darkMode, data, setData, setBookDetails }) {
       setResult(true);
    };
 
-   const handleSeeMore = (e) => {
-      const bookfiltered = data.filter((book) => {
-         return book.id === e.target.id;
-      });
-      setBookDetails(...bookfiltered);
-   };
-
    useEffect(() => {
       if (result) {
-         scrollTo();
+         scrollToTopBook();
       }
    }, [result]);
 
@@ -146,7 +148,13 @@ function Home({ darkMode, data, setData, setBookDetails }) {
                     )
                     .map((book) => {
                        return (
-                          <section className="book" key={book.id}>
+                          <Link
+                             className="book"
+                             style={{ textDecoration: "none" }}
+                             to={`searchedbook/${book.id}`}
+                             key={book.id}
+                             state={{ bookDetails: book }}
+                          >
                              <div className="book-image">
                                 <img src={book.volumeInfo.imageLinks?.thumbnail} alt="book cover" />
                              </div>
@@ -156,16 +164,8 @@ function Home({ darkMode, data, setData, setBookDetails }) {
                                    (author) => `${author} `
                                 )}  ${book.volumeInfo.publishedDate}`}</p>
                                 <p className="description">{book.volumeInfo.description}</p>
-                                <Link
-                                   to={`searchedbook/${book.id}`}
-                                   style={{ textDecoration: "none", cursor: "auto" }}
-                                >
-                                   <p className="see-more" id={book.id} onClick={handleSeeMore}>
-                                      See more
-                                   </p>
-                                </Link>
                              </div>
-                          </section>
+                          </Link>
                        );
                     })
                : null}
@@ -174,7 +174,7 @@ function Home({ darkMode, data, setData, setBookDetails }) {
             className={show ? "arrow-up fixed" : "arrow-up"}
             src={darkMode ? arrowUpIconDarkMode : arrowUpIcon}
             alt="arrow up icon"
-            onClick={scrollTo}
+            onClick={scrollToTop}
          />
       </motion.main>
    );

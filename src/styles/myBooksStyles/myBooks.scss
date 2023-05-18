@@ -4,6 +4,7 @@
 
 .mybooks-container {
    width: 100%;
+   min-height: calc(100vh - 4.5rem);
    padding: 0 2rem;
    background-color: $White;
    transition: 0.3s;
@@ -40,7 +41,6 @@
       }
       .display-books {
          width: calc(100% - 12rem);
-         height: 100%;
          min-height: calc(100vh - 9.1rem);
          padding: 1rem 1.5rem 0;
          border-left: 1px solid $Very-dark-blue;
@@ -117,6 +117,45 @@
                   transition: 0.3s;
                }
             }
+         }
+      }
+   }
+}
+
+@media (max-width: 600px) {
+   .mybooks-container {
+      .books {
+         .display-books {
+            padding: 1rem 0rem 0 1rem;
+            h3 {
+               font-size: 1rem;
+               span {
+                  display: none;
+               }
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 500px) {
+   .mybooks-container {
+      padding: 0 1rem;
+      .books {
+         .display-books {
+            > div {
+               @include flexbox(center, flex-start, 0, 1.5rem, row, wrap);
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 425px) {
+   .mybooks-container {
+      .books {
+         .display-books {
+            display: none;
          }
       }
    }

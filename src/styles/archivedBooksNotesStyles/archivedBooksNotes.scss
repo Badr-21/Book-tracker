@@ -21,6 +21,7 @@
          box-shadow: 0.1rem 0.1rem 0.3rem rgba(128, 128, 128, 0.3),
             -0.1rem -0.1rem 0.3rem rgba(128, 128, 128, 0.3);
          border-radius: 0.5rem;
+         overflow-wrap: break-word;
          transition: 0.3s;
          position: relative;
          .image-infos-archived-book-note {
@@ -35,16 +36,20 @@
                }
             }
             .infos-archived-book-note {
-               padding: 1rem;
+               padding: 1rem 1rem 0;
                font-size: 1.2rem;
                font-weight: $font-500;
                color: $Very-dark-blue;
-               .note-archived-date-time {
+               .note-archived-date {
+                  margin-bottom: 1rem;
+               }
+               .note-archived-time {
                   margin-bottom: 1rem;
                }
             }
          }
          .note-text-saved {
+            padding-bottom: 1rem;
             color: $Black;
          }
          .show-all {
@@ -107,6 +112,60 @@
                img:hover {
                   cursor: pointer;
                   scale: 1.1;
+               }
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 1150px) {
+   .archived-books-notes-container {
+      .all-my-archived-notes {
+         .book-archived-note {
+            padding-top: 2rem;
+         }
+      }
+   }
+}
+
+@media (max-width: 900px) {
+   .archived-books-notes-container {
+      .all-my-archived-notes {
+         .book-archived-note {
+            width: calc((100% - 3rem) / 2);
+         }
+      }
+   }
+}
+
+@media (max-width: 700px) {
+   .archived-books-notes-container {
+      .all-my-archived-notes {
+         .book-archived-note {
+            width: 100%;
+         }
+         .book-archived-note:hover {
+            scale: none;
+         }
+      }
+   }
+}
+
+@media (max-width: 375px) {
+   .archived-books-notes-container {
+      .all-my-archived-notes {
+         .book-archived-note {
+            .image-infos-archived-book-note {
+               @include flexbox(flex-start, center, 0, 0, column-reverse, wrap);
+               .image-archived-book-note {
+                  img {
+                     width: 8rem;
+                     height: 12rem;
+                  }
+               }
+               .infos-archived-book-note {
+                  @include flexbox(flex-start, flex-start, 1rem, 0, row, wrap);
                }
             }
          }

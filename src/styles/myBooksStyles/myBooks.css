@@ -1,5 +1,6 @@
 .mybooks-container {
   width: 100%;
+  min-height: calc(100vh - 4.5rem);
   padding: 0 2rem;
   background-color: #ffffff;
   transition: 0.3s;
@@ -49,7 +50,6 @@
 }
 .mybooks-container .books .display-books {
   width: calc(100% - 12rem);
-  height: 100%;
   min-height: calc(100vh - 9.1rem);
   padding: 1rem 1.5rem 0;
   border-left: 1px solid #003147;
@@ -106,5 +106,36 @@
     cursor: pointer;
     scale: 1.1;
     transition: 0.3s;
+  }
+}
+@media (max-width: 600px) {
+  .mybooks-container .books .display-books {
+    padding: 1rem 0rem 0 1rem;
+  }
+  .mybooks-container .books .display-books h3 {
+    font-size: 1rem;
+  }
+  .mybooks-container .books .display-books h3 span {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .mybooks-container {
+    padding: 0 1rem;
+  }
+  .mybooks-container .books .display-books > div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    -moz-column-gap: 0;
+         column-gap: 0;
+    row-gap: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 425px) {
+  .mybooks-container .books .display-books {
+    display: none;
   }
 }/*# sourceMappingURL=myBooks.css.map */

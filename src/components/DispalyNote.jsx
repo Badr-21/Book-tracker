@@ -43,9 +43,7 @@ function DisplayNote({ currentBook, currentReadingBookNotes, bookId, darkMode })
                   </div>
                ) : null}
             </div>
-         ) : (
-            <p className="unselected-book-note">Select a book to see if you wrote a note.</p>
-         )}
+         ) : null}
       </main>
    );
 }

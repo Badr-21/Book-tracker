@@ -1,9 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "../styles/booksCurrentReadingStyles/booksCurrentReading.css";
 import Back from "./Back";
 import { currentReadingContext } from "../App";
-import WriteNote from "./WriteNote";
-import DisplayNote from "./DispalyNote";
 import deleteIcon from "../assets/delete-Icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
 import deleteAllIcon from "../assets/delete-all-icon.svg";
@@ -24,6 +22,7 @@ import {
    deleteOneBookWithNoteAlert,
    deleteAllBooksWithNoteAlert,
 } from "../components/ConfirmAlert";
+import { Link } from "react-router-dom";
 
 function BooksCurrentReading({
    darkMode,
@@ -35,15 +34,18 @@ function BooksCurrentReading({
    setArchivedBookNotes,
 }) {
    const { currentReadingBooks, setCurrentReadingBooks } = useContext(currentReadingContext);
-   const [currentBook, setCurrentBook] = useState();
-   const [bookId, setBookId] = useState("");
 
-   const selectCurrentBook = (e) => {
-      const currentB = currentReadingBooks.filter((book) => {
-         return book.id === e.target.id;
-      });
-      setCurrentBook(...currentB);
-      setBookId(currentB[0].id);
+   const booksRef = useRef();
+
+   const handleClickBook = (e) => {
+      if (e.target.nextElementSibling.style.bottom === "-1.8rem") {
+         e.target.nextElementSibling.style.bottom = "1.8rem";
+      } else {
+         for (let child of booksRef.current.childNodes) {
+            child.firstElementChild.nextElementSibling.style.bottom = "1.8rem";
+         }
+         e.target.nextElementSibling.style.bottom = "-1.8rem";
+      }
    };
 
    const moveToArchivedBooks = (e) => {
@@ -54,12 +56,12 @@ function BooksCurrentReading({
                const MovedBook = currentReadingBooks.filter((bookNotes) => {
                   return bookNotes.id === e.target.id;
                });
-               setArchivedBooks([...archivedBooks, ...MovedBook]);
+               setArchivedBooks([...MovedBook, ...archivedBooks]);
 
                const movedNotes = currentReadingBookNotes.filter((bookNotes) => {
                   return bookNotes.bookId === e.target.id;
                });
-               setArchivedBookNotes([...archivedBookNotes, ...movedNotes]);
+               setArchivedBookNotes([...movedNotes, ...archivedBookNotes]);
 
                const nonMovedNotes = currentReadingBookNotes.filter((bookNotes) => {
                   return bookNotes.bookId !== e.target.id;
@@ -72,8 +74,8 @@ function BooksCurrentReading({
                setCurrentReadingBooks(nonMovedCurrentReadingBooks);
 
                setCurrentBook(null);
+               archiveBookConfirm(darkMode);
             }
-            archiveBookConfirm(darkMode);
          });
       } else {
          notifyDeniedArchiving();
@@ -193,21 +195,6 @@ function BooksCurrentReading({
          }}
       >
          <Back darkMode={darkMode} />
-         <section className="write-display-note">
-            <WriteNote
-               currentBook={currentBook}
-               bookId={bookId}
-               darkMode={darkMode}
-               currentReadingBookNotes={currentReadingBookNotes}
-               setCurrentReadingBookNotes={setCurrentReadingBookNotes}
-            />
-            <DisplayNote
-               currentBook={currentBook}
-               currentReadingBookNotes={currentReadingBookNotes}
-               bookId={bookId}
-               darkMode={darkMode}
-            />
-         </section>
          <h3 className="category-book">
             Current Reading books
             <img
@@ -216,7 +203,7 @@ function BooksCurrentReading({
                onClick={deleteAllCurrentReadingBooks}
             />
          </h3>
-         <section className="display-current-reading-books">
+         <section className="display-current-reading-books" ref={booksRef}>
             {currentReadingBooks
                ? currentReadingBooks.map((book) => {
                     return (
@@ -224,14 +211,15 @@ function BooksCurrentReading({
                           <img
                              src={book.volumeInfo.imageLinks.thumbnail}
                              alt={book.volumeInfo.title}
+                             onClick={handleClickBook}
                           />
                           <div className="see-and-delete-icons">
-                             <img
-                                src={darkMode ? noteWriteIconDarkMode : noteWriteIcon}
-                                alt="note edit icon"
-                                id={book.id}
-                                onClick={selectCurrentBook}
-                             />
+                             <Link to={`${book.id}`} state={{ bookId: book.id, currentBook: book }}>
+                                <img
+                                   src={darkMode ? noteWriteIconDarkMode : noteWriteIcon}
+                                   alt="note write icon"
+                                />
+                             </Link>
                              <img
                                 src={darkMode ? BookArchivedIconDarMode : BookArchivedIcon}
                                 alt="see book icon"

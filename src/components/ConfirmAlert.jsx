@@ -197,7 +197,7 @@ export const moveBackBookAlert = (darkMode) =>
               showCancelButton: true,
               confirmButtonColor: "#66b8ff",
               cancelButtonColor: "#66b8ff",
-              confirmButtonText: "Yes, archive it!",
+              confirmButtonText: "Yes, move it back!",
            }
          : {
               width: "22rem",
@@ -207,7 +207,7 @@ export const moveBackBookAlert = (darkMode) =>
               showCancelButton: true,
               confirmButtonColor: "#003147",
               cancelButtonColor: "#003147",
-              confirmButtonText: "Yes, archive it!",
+              confirmButtonText: "Yes, move it back!",
            }
    );
 

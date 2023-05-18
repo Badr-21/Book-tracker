@@ -30,7 +30,8 @@ function ArchivedBooksNotes({ darkMode, archivedBookNotes }) {
                               />
                            </div>
                            <div className="infos-archived-book-note">
-                              <p className="note-archived-date-time">{`${note.date} ${note.time}`}</p>
+                              <p className="note-archived-date">{`${note.date}`}</p>
+                              <p className="note-archived-time">{`${note.time}`}</p>
                               <p className="note-archived-page-number">
                                  Page <span>{note.page}</span>
                               </p>

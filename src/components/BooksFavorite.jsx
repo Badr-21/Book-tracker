@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "../styles/booksFavoriteStyles/bookFavorite.css";
 import Back from "./Back";
 import { favoriteBooksContext } from "../App";
@@ -18,14 +18,20 @@ import {
 import { motion } from "framer-motion";
 import Toast, { notifyEmptyList } from "./Toast";
 
-function BooksFavorite({ darkMode, setBookDetails }) {
+function BooksFavorite({ darkMode }) {
    const { favoriteBooks, setFavoriteBooks } = useContext(favoriteBooksContext);
 
-   const SeeFavoriteBooks = (e) => {
-      const seeBook = favoriteBooks.filter((book) => {
-         return book.id === e.target.id;
-      });
-      setBookDetails(...seeBook);
+   const booksRef = useRef();
+
+   const handleClickBook = (e) => {
+      if (e.target.nextElementSibling.style.bottom === "-1.8rem") {
+         e.target.nextElementSibling.style.bottom = "1.8rem";
+      } else {
+         for (let child of booksRef.current.childNodes) {
+            child.firstElementChild.nextElementSibling.style.bottom = "1.8rem";
+         }
+         e.target.nextElementSibling.style.bottom = "-1.8rem";
+      }
    };
 
    const deleteFavoriteBooks = (e) => {
@@ -79,7 +85,7 @@ function BooksFavorite({ darkMode, setBookDetails }) {
                onClick={deleteAllFavoriteBooks}
             />
          </h3>
-         <section className="display-favorite-books">
+         <section className="display-favorite-books" ref={booksRef}>
             {favoriteBooks
                ? favoriteBooks.map((book) => {
                     return (
@@ -87,14 +93,13 @@ function BooksFavorite({ darkMode, setBookDetails }) {
                           <img
                              src={book.volumeInfo.imageLinks.thumbnail}
                              alt={book.volumeInfo.title}
+                             onClick={handleClickBook}
                           />
                           <div className="see-and-delete-icons">
-                             <Link to={`/searchedbook/${book.id}`}>
+                             <Link to={`/searchedbook/${book.id}`} state={{ bookDetails: book }}>
                                 <img
                                    src={darkMode ? seeBookIconDarkMode : seeBookIcon}
                                    alt="see book icon"
-                                   id={book.id}
-                                   onClick={SeeFavoriteBooks}
                                 />
                              </Link>
                              <img

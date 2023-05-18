@@ -20,18 +20,11 @@ import BookArchivedIconDarMode from "../assets/book-archive-icon-darkmode.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function MyBooks({ darkMode, setBookDetails, allBooks }) {
+function MyBooks({ darkMode }) {
    const { currentReadingBooks } = useContext(currentReadingContext);
    const { favoriteBooks } = useContext(favoriteBooksContext);
    const { toReadBooks } = useContext(toReadBooksContext);
    const { haveReadBooks } = useContext(haveReadBooksContext);
-
-   const handleSeeBook = (e) => {
-      const seeBook = allBooks.filter((book) => {
-         return book.id === e.target.id;
-      });
-      setBookDetails(...seeBook);
-   };
 
    return (
       <motion.main
@@ -116,12 +109,15 @@ function MyBooks({ darkMode, setBookDetails, allBooks }) {
                   {currentReadingBooks
                      ? currentReadingBooks.map((book) => {
                           return (
-                             <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <Link
+                                key={book.id}
+                                to={`/searchedbook/${book.id}`}
+                                state={{ bookDetails: book }}
+                             >
                                 <img
                                    src={book.volumeInfo.imageLinks.thumbnail}
                                    alt={book.volumeInfo.title}
                                    id={book.id}
-                                   onClick={handleSeeBook}
                                 />
                              </Link>
                           );
@@ -135,12 +131,15 @@ function MyBooks({ darkMode, setBookDetails, allBooks }) {
                   {favoriteBooks
                      ? favoriteBooks.map((book) => {
                           return (
-                             <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <Link
+                                key={book.id}
+                                to={`/searchedbook/${book.id}`}
+                                state={{ bookDetails: book }}
+                             >
                                 <img
                                    src={book.volumeInfo.imageLinks.thumbnail}
                                    alt={book.volumeInfo.title}
                                    id={book.id}
-                                   onClick={handleSeeBook}
                                 />
                              </Link>
                           );
@@ -154,12 +153,15 @@ function MyBooks({ darkMode, setBookDetails, allBooks }) {
                   {toReadBooks
                      ? toReadBooks.map((book) => {
                           return (
-                             <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <Link
+                                key={book.id}
+                                to={`/searchedbook/${book.id}`}
+                                state={{ bookDetails: book }}
+                             >
                                 <img
                                    src={book.volumeInfo.imageLinks.thumbnail}
                                    alt={book.volumeInfo.title}
                                    id={book.id}
-                                   onClick={handleSeeBook}
                                 />
                              </Link>
                           );
@@ -173,12 +175,15 @@ function MyBooks({ darkMode, setBookDetails, allBooks }) {
                   {haveReadBooks
                      ? haveReadBooks.map((book) => {
                           return (
-                             <Link key={book.id} to={`/searchedbook/${book.id}`}>
+                             <Link
+                                key={book.id}
+                                to={`/searchedbook/${book.id}`}
+                                state={{ bookDetails: book }}
+                             >
                                 <img
                                    src={book.volumeInfo.imageLinks.thumbnail}
                                    alt={book.volumeInfo.title}
                                    id={book.id}
-                                   onClick={handleSeeBook}
                                 />
                              </Link>
                           );

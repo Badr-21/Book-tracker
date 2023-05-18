@@ -4,7 +4,7 @@
 
 .searched-container {
    padding: 0rem 2rem 2.85rem;
-   height: 100%;
+   min-height: calc(100vh - 4.5rem);
    background-color: $White;
    transition: 0.3s;
    .back-and-add-to {
@@ -61,8 +61,8 @@
       @include flexbox(flex-start, flex-start, 1rem);
       .searched-book-image {
          > img {
-            width: 20rem;
-            height: 28.2rem;
+            width: 18rem;
+            height: 27rem;
             margin-bottom: 0.5rem;
             box-shadow: 0.1rem 0.1rem 0.3rem rgba(128, 128, 128, 0.3),
                -0.1rem -0.1rem 0.3rem rgba(128, 128, 128, 0.3);
@@ -126,6 +126,80 @@
                   opacity: 1;
                }
             }
+         }
+      }
+   }
+}
+
+@media (max-width: 1150px) {
+   .searched-container {
+      .searched-book {
+         .searched-book-image {
+            > img {
+               width: 16rem;
+               height: 24rem;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 900px) {
+   .searched-container {
+      .searched-book {
+         .searched-book-image {
+            > img {
+               width: 14rem;
+               height: 21rem;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 800px) {
+   .searched-container {
+      .searched-book {
+         .searched-book-image {
+            > img {
+               width: 12rem;
+               height: 18rem;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 700px) {
+   .searched-container {
+      .searched-book {
+         .searched-book-image {
+            > img {
+               width: 10rem;
+               height: 15rem;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 600px) {
+   .searched-container {
+      .searched-book {
+         .searched-book-image {
+            display: none;
+         }
+      }
+   }
+}
+
+@media (max-width: 500px) {
+   .searched-container {
+      .back-and-add-to {
+         @include flexbox(flex-start, flex-start, 0, 1rem, column);
+         .add-to {
+            width: 100%;
+            @include flexbox(flex-start, center, 2rem, 2rem, row, wrap);
          }
       }
    }

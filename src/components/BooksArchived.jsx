@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useRef } from "react";
 import Back from "./Back";
 import { currentReadingContext } from "../App";
 import "../styles/booksArchivedStyles/booksArchived.css";
@@ -34,6 +34,19 @@ function BooksArchived({
 }) {
    const { currentReadingBooks, setCurrentReadingBooks } = useContext(currentReadingContext);
 
+   const booksRef = useRef();
+
+   const handleClickBook = (e) => {
+      if (e.target.nextElementSibling.style.bottom === "-1.8rem") {
+         e.target.nextElementSibling.style.bottom = "1.8rem";
+      } else {
+         for (let child of booksRef.current.childNodes) {
+            child.firstElementChild.nextElementSibling.style.bottom = "1.8rem";
+         }
+         e.target.nextElementSibling.style.bottom = "-1.8rem";
+      }
+   };
+
    const moveBackToCurrentReadingBooks = (e) => {
       moveBackBookAlert(darkMode).then((result) => {
          if (result.isConfirmed) {
@@ -56,8 +69,8 @@ function BooksArchived({
                return bookNotes.id !== e.target.id;
             });
             setArchivedBooks(nonMovedArchivedBooks);
+            moveBackBookConfirm(darkMode);
          }
-         moveBackBookConfirm(darkMode);
       });
    };
 
@@ -164,7 +177,7 @@ function BooksArchived({
                onClick={deleteAllArchivedBooks}
             />
          </h3>
-         <section className="display-archived-books">
+         <section className="display-archived-books" ref={booksRef}>
             {archivedBooks
                ? archivedBooks.map((book) => {
                     return (
@@ -172,6 +185,7 @@ function BooksArchived({
                           <img
                              src={book.volumeInfo.imageLinks.thumbnail}
                              alt={book.volumeInfo.title}
+                             onClick={handleClickBook}
                           />
                           <div className="see-and-delete-icons">
                              <img

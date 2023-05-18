@@ -1,17 +1,16 @@
 .display-note-container {
-  width: 33%;
-  padding: 2rem 0 0 2rem;
-  font-weight: 500;
+  width: 100%;
+  margin-top: 1rem;
   transition: 0.3s;
 }
 .display-note-container .selected-book-note .number-of-notes {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: #003147;
   font-size: 1.3rem;
   font-weight: 500;
 }
 .display-note-container .selected-book-note .last-note .last-note-date-page {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: #003147;
   font-size: 1.2rem;
   font-weight: 500;
@@ -31,23 +30,12 @@
 .display-note-container .selected-book-note .last-note .last-note-text {
   margin-bottom: 1rem;
   color: #1f1f1f;
+  overflow-wrap: break-word;
 }
 .display-note-container .selected-book-note .see-all-notes {
   font-size: 1.1rem;
   font-weight: 700;
   color: #003147;
-}
-.display-note-container .unselected-book-note {
-  height: 15rem;
-  color: #003147;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -moz-column-gap: 0;
-       column-gap: 0;
-  row-gap: 0;
-  flex-direction: row;
-  flex-wrap: nowrap;
 }
 
 .display-note-container.dark-mode .selected-book-note .number-of-notes {
@@ -65,13 +53,44 @@
 .display-note-container.dark-mode .selected-book-note .see-all-notes {
   color: #66b8ff;
 }
-.display-note-container.dark-mode .unselected-book-note {
-  color: #66b8ff;
-}
 
 @media (hover: hover) {
   .display-note-container .selected-book-note .see-all-notes:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+}
+@media (max-width: 1150px) {
+  .display-note-container .selected-book-note .number-of-notes {
+    font-size: 1.1rem;
+  }
+  .display-note-container .selected-book-note .last-note .last-note-date-page {
+    font-size: 1rem;
+  }
+  .display-note-container .selected-book-note .last-note .last-note-date-page > p {
+    font-size: 0.9rem;
+  }
+  .display-note-container .selected-book-note .last-note .last-note-text {
+    font-size: 0.9rem;
+  }
+  .display-note-container .selected-book-note .see-all-notes {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 375px) {
+  .display-note-container .selected-book-note .number-of-notes {
+    font-size: 1rem;
+  }
+  .display-note-container .selected-book-note .last-note .last-note-date-page {
+    font-size: 0.9rem;
+  }
+  .display-note-container .selected-book-note .last-note .last-note-date-page > p {
+    font-size: 0.85rem;
+  }
+  .display-note-container .selected-book-note .last-note .last-note-text {
+    font-size: 0.85rem;
+  }
+  .display-note-container .selected-book-note .see-all-notes {
+    font-size: 0.9rem;
   }
 }/*# sourceMappingURL=displayNote.css.map */

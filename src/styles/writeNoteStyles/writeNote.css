@@ -1,22 +1,25 @@
 .write-note-container {
-  width: 67%;
+  width: 100%;
+  min-height: calc(100vh - 4.5rem);
+  padding: 0 2rem 1rem;
+  background-color: #ffffff;
   transition: 0.3s;
 }
 .write-note-container .current-book {
   width: 100%;
-  margin: 1.5rem 0 0;
+  margin-top: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  -moz-column-gap: 3rem;
-       column-gap: 3rem;
+  -moz-column-gap: 4rem;
+       column-gap: 4rem;
   row-gap: 0;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 .write-note-container .current-book .current-book-image {
-  width: 11rem;
-  height: 16.5rem;
+  width: 14rem;
+  height: 21rem;
 }
 .write-note-container .current-book .current-book-image img {
   width: inherit;
@@ -27,12 +30,12 @@
   color: #003147;
 }
 .write-note-container .current-book .current-book-text .current-book-title-and-authors .current-book-title {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: 700;
 }
 .write-note-container .current-book .current-book-text .current-book-title-and-authors .current-book-authors {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   font-weight: 500;
 }
 .write-note-container .current-book .current-book-text .input-range {
@@ -47,7 +50,7 @@
   flex-wrap: nowrap;
 }
 .write-note-container .current-book .current-book-text .input-range input {
-  width: 35rem;
+  width: 45rem;
 }
 .write-note-container .current-book .current-book-text .input-range .page-number {
   width: 5rem;
@@ -56,10 +59,10 @@
   text-align: center;
 }
 .write-note-container .current-book .current-book-text .textarea-note {
-  width: 35rem;
-  height: 7.5rem;
+  width: 45rem;
+  height: 7rem;
   padding: 0 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: #003147;
   border: 0.15rem solid #003147;
   outline: none;
@@ -68,7 +71,7 @@
   transition: 0.3s;
 }
 .write-note-container .current-book .current-book-text .characters-and-button-save {
-  width: 35rem;
+  width: 45rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -94,105 +97,10 @@
   border: none;
   border-radius: 0.5rem;
 }
-.write-note-container .empty-book {
-  width: 100%;
-  margin: 1.5rem 0 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  -moz-column-gap: 3rem;
-       column-gap: 3rem;
-  row-gap: 0;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-.write-note-container .empty-book .empty-book-image {
-  width: 11rem;
-  height: 16.5rem;
-  box-shadow: 0.1rem 0.1rem 0.3rem rgba(128, 128, 128, 0.3019607843), -0.1rem -0.1rem 0.3rem rgba(128, 128, 128, 0.3019607843);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -moz-column-gap: 0;
-       column-gap: 0;
-  row-gap: 0;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-.write-note-container .empty-book .empty-book-image p {
-  width: inherit;
-  font-size: 0.8rem;
-  color: #003147;
-  text-align: center;
-}
-.write-note-container .empty-book .empty-book-text .empty-book-title-and-authors {
-  color: #003147;
-}
-.write-note-container .empty-book .empty-book-text .empty-book-title-and-authors .empty-book-title {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-.write-note-container .empty-book .empty-book-text .empty-book-title-and-authors .empty-book-authors {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-.write-note-container .empty-book .empty-book-text .empty-input-range {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
-  row-gap: 0;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-.write-note-container .empty-book .empty-book-text .empty-input-range input {
-  width: 35rem;
-}
-.write-note-container .empty-book .empty-book-text .empty-textarea-note {
-  width: 35rem;
-  height: 7.5rem;
-  padding: 0 0.5rem;
-  margin-bottom: 0.5rem;
-  background-color: #ededed;
-  border: 0.15rem solid #003147;
-  font-size: 0.9rem;
-  outline: none;
-  resize: none;
-  transition: 0.3s;
-}
-.write-note-container .empty-book .empty-book-text .empty-textarea-note::-moz-placeholder {
-  color: #003147;
-  font-weight: 500;
-}
-.write-note-container .empty-book .empty-book-text .empty-textarea-note::placeholder {
-  color: #003147;
-  font-weight: 500;
-}
-.write-note-container .empty-book .empty-book-text .disabled-button-save {
-  width: 35rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  -moz-column-gap: 0;
-       column-gap: 0;
-  row-gap: 0;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-.write-note-container .empty-book .empty-book-text .disabled-button-save button {
-  width: 5rem;
-  padding: 0.6rem 0;
-  background-color: #003147;
-  color: #ffffff;
-  font-weight: 700;
-  outline: none;
-  border: none;
-  border-radius: 0.5rem;
-}
 
+.write-note-container.dark-mode {
+  background-color: #1f1f1f;
+}
 .write-note-container.dark-mode .current-book .current-book-text .current-book-title-and-authors {
   color: #66b8ff;
 }
@@ -211,35 +119,147 @@
   background-color: #66b8ff;
   color: #1f1f1f;
 }
-.write-note-container.dark-mode .empty-book .empty-book-image p {
-  color: #66b8ff;
-}
-.write-note-container.dark-mode .empty-book .empty-book-text .empty-book-title-and-authors {
-  color: #66b8ff;
-}
-.write-note-container.dark-mode .empty-book .empty-book-text .empty-textarea-note {
-  background-color: #151519;
-  border-color: #66b8ff;
-}
-.write-note-container.dark-mode .empty-book .empty-book-text .empty-textarea-note::-moz-placeholder {
-  color: #66b8ff;
-}
-.write-note-container.dark-mode .empty-book .empty-book-text .empty-textarea-note::placeholder {
-  color: #66b8ff;
-}
-.write-note-container.dark-mode .empty-book .empty-book-text .disabled-button-save > button {
-  background-color: #66b8ff;
-  color: #1f1f1f;
-}
 
 @media (hover: hover) {
   .write-note-container .current-book .input-range input,
-  .write-note-container .current-book .characters-and-button-save button {
+  .write-note-container .current-book .characters-and-button-save button:hover {
     cursor: pointer;
+    opacity: 0.9;
   }
-  .write-note-container .empty-book .empty-input-range input,
-  .write-note-container .empty-book .empty-textarea-note,
-  .write-note-container .empty-book .disabled-button-save button {
-    cursor: not-allowed;
+}
+@media (max-width: 1150px) {
+  .write-note-container .current-book {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
+    row-gap: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .write-note-container .current-book .current-book-image {
+    width: 13rem;
+    height: 19.5rem;
+  }
+  .write-note-container .current-book .current-book-text .input-range input {
+    width: 33rem;
+  }
+  .write-note-container .current-book .current-book-text .textarea-note {
+    width: 33rem;
+    font-size: 0.9rem;
+  }
+  .write-note-container .current-book .current-book-text .characters-and-button-save {
+    width: 33rem;
+  }
+}
+@media (max-width: 900px) {
+  .write-note-container .current-book {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    row-gap: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .write-note-container .current-book .current-book-image {
+    width: 12rem;
+    height: 18rem;
+  }
+  .write-note-container .current-book .current-book-text .current-book-title-and-authors .current-book-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .write-note-container .current-book .current-book-text .current-book-title-and-authors .current-book-authors {
+    font-size: 1rem;
+  }
+  .write-note-container .current-book .current-book-text .input-range {
+    margin-bottom: 0.5rem;
+  }
+  .write-note-container .current-book .current-book-text .input-range input {
+    width: 25rem;
+  }
+  .write-note-container .current-book .current-book-text .input-range .page-number {
+    font-size: 1rem;
+  }
+  .write-note-container .current-book .current-book-text .textarea-note {
+    width: 25rem;
+    height: 9rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .write-note-container .current-book .current-book-text .characters-and-button-save {
+    width: 25rem;
+    font-size: 1rem;
+  }
+  .write-note-container .current-book .current-book-text .characters-and-button-save button {
+    width: 4rem;
+    padding: 0.5rem 0;
+  }
+}
+@media (max-width: 750px) {
+  .write-note-container .current-book {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    -moz-column-gap: 0rem;
+         column-gap: 0rem;
+    row-gap: 1rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .write-note-container .current-book .current-book-image {
+    display: none;
+  }
+  .write-note-container .current-book .current-book-text {
+    width: 100%;
+  }
+  .write-note-container .current-book .current-book-text .input-range {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    -moz-column-gap: 0;
+         column-gap: 0;
+    row-gap: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .write-note-container .current-book .current-book-text .input-range input {
+    width: inherit;
+  }
+  .write-note-container .current-book .current-book-text .textarea-note {
+    width: 100%;
+  }
+  .write-note-container .current-book .current-book-text .characters-and-button-save {
+    width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .write-note-container {
+    padding: 0 1rem 1rem;
+  }
+  .write-note-container .current-book .current-book-text .textarea-note {
+    height: 11rem;
+  }
+}
+@media (max-width: 375px) {
+  .write-note-container .current-book .current-book-text .current-book-title-and-authors .current-book-title {
+    font-size: 1.1rem;
+  }
+  .write-note-container .current-book .current-book-text .current-book-title-and-authors .current-book-authors {
+    font-size: 0.9rem;
+  }
+  .write-note-container .current-book .current-book-text .input-range .page-number {
+    font-size: 0.9rem;
+  }
+  .write-note-container .current-book .current-book-text .textarea-note {
+    font-size: 0.85rem;
+  }
+  .write-note-container .current-book .current-book-text .textarea-note {
+    height: 12rem;
   }
 }/*# sourceMappingURL=writeNote.css.map */

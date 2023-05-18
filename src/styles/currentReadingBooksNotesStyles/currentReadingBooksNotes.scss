@@ -25,6 +25,7 @@
          box-shadow: 0.1rem 0.1rem 0.3rem rgba(128, 128, 128, 0.3),
             -0.1rem -0.1rem 0.3rem rgba(128, 128, 128, 0.3);
          border-radius: 0.5rem;
+         overflow-wrap: break-word;
          transition: 0.3s;
          position: relative;
          .image-infos-current-Reading-book-note {
@@ -39,16 +40,20 @@
                }
             }
             .infos-current-Reading-book-note {
-               padding: 1rem;
+               padding: 1rem 1rem 0;
                font-size: 1.2rem;
                font-weight: $font-500;
                color: $Very-dark-blue;
-               .note-current-Reading-date-time {
+               .note-current-Reading-date {
+                  margin-bottom: 1rem;
+               }
+               .note-current-Reading-time {
                   margin-bottom: 1rem;
                }
             }
          }
          .note-text-saved {
+            padding-bottom: 1rem;
             color: $Black;
          }
          .show-all-and-delete {
@@ -111,6 +116,60 @@
                img:hover {
                   cursor: pointer;
                   scale: 1.1;
+               }
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 1150px) {
+   .current-Reading-books-notes-container {
+      .all-my-current-Reading-notes {
+         .book-current-Reading-note {
+            padding-top: 2rem;
+         }
+      }
+   }
+}
+
+@media (max-width: 900px) {
+   .current-Reading-books-notes-container {
+      .all-my-current-Reading-notes {
+         .book-current-Reading-note {
+            width: calc((100% - 3rem) / 2);
+         }
+      }
+   }
+}
+
+@media (max-width: 700px) {
+   .current-Reading-books-notes-container {
+      .all-my-current-Reading-notes {
+         .book-current-Reading-note {
+            width: 100%;
+         }
+         .book-current-Reading-note:hover {
+            scale: none;
+         }
+      }
+   }
+}
+
+@media (max-width: 375px) {
+   .current-Reading-books-notes-container {
+      .all-my-current-Reading-notes {
+         .book-current-Reading-note {
+            .image-infos-current-Reading-book-note {
+               @include flexbox(flex-start, center, 0, 0, column-reverse, wrap);
+               .image-current-Reading-book-note {
+                  img {
+                     width: 8rem;
+                     height: 12rem;
+                  }
+               }
+               .infos-current-Reading-book-note {
+                  @include flexbox(flex-start, flex-start, 1rem, 0, row, wrap);
                }
             }
          }

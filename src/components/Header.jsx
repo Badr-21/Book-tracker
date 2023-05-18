@@ -1,66 +1,129 @@
+import { useEffect, useRef, useState } from "react";
 import "../styles/headerStyles/header.css";
 import logo from "../assets/logo.svg";
 import logoDarkMode from "../assets/logo-darkmode.svg";
-import { Link } from "react-router-dom";
+import sunIcon from "../assets/sun-icon.svg";
+import moonIcon from "../assets/moon-icon.svg";
+import hamburgerMenuIcon from "../assets/hamburger-menu-icon.svg";
+import hamburgerMenuIconDarkMode from "../assets/hamburger-menu-icon-darkmode.svg";
+import closeIcon from "../assets/close-icon.svg";
+import closeIconDarkMode from "../assets/close-icon-darkmode.svg";
+import { Link, NavLink } from "react-router-dom";
 
 function Header({ darkMode, setDarkMode }) {
+   const [sideBar, setSideBar] = useState(false);
+   const navRef = useRef();
+
    const handleDarkMode = () => {
       setDarkMode(!darkMode);
    };
+
+   const showSideBar = () => {
+      setSideBar(!sideBar);
+   };
+
+   useEffect(() => {
+      const closeSideBar = (e) => {
+         if (!navRef.current.contains(e.target)) {
+            setSideBar(false);
+         }
+      };
+      document.body.addEventListener("click", closeSideBar, true);
+      return () => document.body.removeEventListener("click", closeSideBar, true);
+   });
    return (
       <header className={darkMode ? "header dark-mode" : "header"}>
+         <img
+            className="humburger-menu"
+            src={darkMode ? hamburgerMenuIconDarkMode : hamburgerMenuIcon}
+            alt="hamburger menu icon"
+            onClick={showSideBar}
+         />
          <div className="header-logo">
             <Link to="/" reloadDocument>
                <img src={darkMode ? logoDarkMode : logo} alt="Books icon" />
             </Link>
          </div>
-         <nav className="header-nav">
+         <nav className={sideBar ? "header-nav show-sidebar" : "header-nav"} ref={navRef}>
+            <img
+               className="close"
+               src={darkMode ? closeIconDarkMode : closeIcon}
+               alt="close icon"
+               onClick={showSideBar}
+            />
             <ul>
                <li>
-                  <Link
+                  <NavLink
+                     className="link"
                      style={
                         darkMode
-                           ? { color: "#66b8ff", textDecoration: "none" }
-                           : { color: "#003147", textDecoration: "none" }
+                           ? ({ isActive }) => {
+                                return isActive
+                                   ? { backgroundColor: "#66b8ff", color: "#1f1f1f" }
+                                   : {};
+                             }
+                           : ({ isActive }) => {
+                                return isActive
+                                   ? { backgroundColor: "#003147", color: "#ffffff" }
+                                   : {};
+                             }
                      }
                      to="/"
                   >
                      Home
-                  </Link>
+                  </NavLink>
                </li>
                <li>
-                  <Link
+                  <NavLink
+                     className="link"
                      style={
                         darkMode
-                           ? { color: "#66b8ff", textDecoration: "none" }
-                           : { color: "#003147", textDecoration: "none" }
+                           ? ({ isActive }) => {
+                                return isActive
+                                   ? { backgroundColor: "#66b8ff", color: "#1f1f1f" }
+                                   : {};
+                             }
+                           : ({ isActive }) => {
+                                return isActive
+                                   ? { backgroundColor: "#003147", color: "#ffffff" }
+                                   : {};
+                             }
                      }
                      to="mybooks"
                   >
                      My Books
-                  </Link>
+                  </NavLink>
                </li>
                <li>
-                  <Link
+                  <NavLink
+                     className="link"
                      style={
                         darkMode
-                           ? { color: "#66b8ff", textDecoration: "none" }
-                           : { color: "#003147", textDecoration: "none" }
+                           ? ({ isActive }) => {
+                                return isActive
+                                   ? { backgroundColor: "#66b8ff", color: "#1f1f1f" }
+                                   : {};
+                             }
+                           : ({ isActive }) => {
+                                return isActive
+                                   ? { backgroundColor: "#003147", color: "#ffffff" }
+                                   : {};
+                             }
                      }
                      to="mynotes/currentreadingbooksnotes"
                   >
                      My Notes
-                  </Link>
+                  </NavLink>
                </li>
             </ul>
-            <div className={darkMode ? "mode dark-mode" : "mode"}>
-               <p>{darkMode ? "Dark Mode" : "Light Mode"}</p>
-               <label className="toggle">
-                  <input type="checkbox" onClick={handleDarkMode} />
-                  <span className="slider"></span>
-               </label>
-            </div>
          </nav>
+         <div className={darkMode ? "mode dark-mode" : "mode"}>
+            <img src={darkMode ? moonIcon : sunIcon} alt={darkMode ? "moon icon" : "sun icon"} />
+            <label className="toggle">
+               <input type="checkbox" onClick={handleDarkMode} />
+               <span className="slider"></span>
+            </label>
+         </div>
       </header>
    );
 }

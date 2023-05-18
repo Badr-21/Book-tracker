@@ -21,45 +21,36 @@ import Toast, {
    notifyAlreadyArchivedBook,
 } from "./Toast";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
-function Searched({ darkMode, bookDetails, setAllBooks, allBooks, archivedBooks }) {
+function Searched({ darkMode, archivedBooks }) {
    const { currentReadingBooks, setCurrentReadingBooks } = useContext(currentReadingContext);
    const { favoriteBooks, setFavoriteBooks } = useContext(favoriteBooksContext);
    const { toReadBooks, setToReadBooks } = useContext(toReadBooksContext);
    const { haveReadBooks, setHaveReadBooks } = useContext(haveReadBooksContext);
 
-   const handleAllBooks = () => {
-      if (allBooks) {
-         const foundBook = allBooks.find((book) => book.id === bookDetails.id);
-         if (foundBook) {
-            return;
-         } else {
-            setAllBooks([...allBooks, bookDetails]);
-         }
-      } else {
-         setAllBooks([...allBooks, bookDetails]);
-      }
-   };
+   const location = useLocation();
 
    const handleAddingBooks = (booksCategory, setBooksCategory, name) => {
       if (booksCategory) {
-         const foundBook = booksCategory.find((book) => book.id === bookDetails.id);
+         const foundBook = booksCategory.find((book) => book.id === location.state.bookDetails.id);
          if (foundBook) {
             notifyAlreadyAdded(name);
          } else {
-            setBooksCategory([...booksCategory, bookDetails]);
+            setBooksCategory([...booksCategory, location.state.bookDetails]);
             notifySuccessfullyAdded(name);
          }
       } else {
-         setBooksCategory([...booksCategory, bookDetails]);
+         setBooksCategory([...booksCategory, location.state.bookDetails]);
          notifySuccessfullyAdded(name);
       }
-      handleAllBooks();
    };
 
    const handleCurrentReadingBooks = () => {
       if (archivedBooks) {
-         const foundArchivedBooks = archivedBooks.find((book) => book.id === bookDetails.id);
+         const foundArchivedBooks = archivedBooks.find(
+            (book) => book.id === location.state.bookDetails.id
+         );
          if (foundArchivedBooks) {
             notifyAlreadyArchivedBook();
          } else {
@@ -82,9 +73,6 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks, archivedBooks 
       }
       if (haveReadBooks) {
          localStorage.setItem("have read books", JSON.stringify(haveReadBooks));
-      }
-      if (allBooks) {
-         localStorage.setItem("all books", JSON.stringify(allBooks));
       }
    }, [currentReadingBooks, favoriteBooks, toReadBooks, haveReadBooks]);
 
@@ -138,35 +126,35 @@ function Searched({ darkMode, bookDetails, setAllBooks, allBooks, archivedBooks 
                </div>
             </div>
          </section>
-         {bookDetails ? (
+         {location.state.bookDetails ? (
             <article className="searched-book">
                <section className="searched-book-image">
-                  <img src={bookDetails.volumeInfo.imageLinks.thumbnail} alt="" />
+                  <img src={location.state.bookDetails.volumeInfo.imageLinks.thumbnail} alt="" />
                </section>
                <section className="searched-book-text">
                   <h2 className="searched-title">
                      <span>Title: </span>
-                     {bookDetails.volumeInfo.title}
+                     {location.state.bookDetails.volumeInfo.title}
                   </h2>
                   <p className="searched-authors">
                      <span>Authors: </span>
-                     {bookDetails.volumeInfo.authors.map((author) => `${author} `)}
+                     {location.state.bookDetails.volumeInfo.authors.map((author) => `${author} `)}
                   </p>
                   <p className="searched-plublisher">
                      <span>Publisher: </span>
-                     {bookDetails.volumeInfo.publisher}
+                     {location.state.bookDetails.volumeInfo.publisher}
                   </p>
                   <p className="searched-plublished-date">
                      <span>Published date: </span>
-                     {bookDetails.volumeInfo.publishedDate}
+                     {location.state.bookDetails.volumeInfo.publishedDate}
                   </p>
                   <p className="searched-plublished-page">
                      <span>Pages: </span>
-                     {bookDetails.volumeInfo.pageCount}
+                     {location.state.bookDetails.volumeInfo.pageCount}
                   </p>
                   <p className="searched-description">
                      <span>Description: </span>
-                     {bookDetails.volumeInfo.description}
+                     {location.state.bookDetails.volumeInfo.description}
                   </p>
                </section>
             </article>

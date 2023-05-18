@@ -15,11 +15,9 @@ import AllArchivedBooksNotes from "./AllArchivedBooksNotes";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { getLocalStorage } from "../App";
 import { AnimatePresence } from "framer-motion";
+import WriteNote from "./WriteNote";
 
 function AnimatedRoutes({ darkMode }) {
-   const [data, setData] = useState();
-   const [bookDetails, setBookDetails] = useState();
-   const [allBooks, setAllBooks] = useState(() => getLocalStorage("all books"));
    const [archivedBooks, setArchivedBooks] = useState(() => getLocalStorage("archived books"));
    const [currentReadingBookNotes, setCurrentReadingBookNotes] = useState(() =>
       getLocalStorage("current reading book notes")
@@ -34,55 +32,38 @@ function AnimatedRoutes({ darkMode }) {
       <main style={darkMode ? { backgroundColor: "#1f1f1f" } : { backgroundColor: "#ffffff" }}>
          <AnimatePresence>
             <Routes location={location} key={location.pathname}>
-               <Route
-                  path="/"
-                  element={
-                     <Home
-                        darkMode={darkMode}
-                        data={data}
-                        setData={setData}
-                        setBookDetails={setBookDetails}
-                     />
-                  }
-               />
+               <Route path="/" element={<Home darkMode={darkMode} />} />
                <Route path="mybooks">
-                  <Route
-                     index
-                     element={
-                        <MyBooks
-                           darkMode={darkMode}
-                           setBookDetails={setBookDetails}
-                           allBooks={allBooks}
-                        />
-                     }
-                  />
-                  <Route
-                     path="bookscurrentreading"
-                     index
-                     element={
-                        <BooksCurrentReading
-                           darkMode={darkMode}
-                           currentReadingBookNotes={currentReadingBookNotes}
-                           setCurrentReadingBookNotes={setCurrentReadingBookNotes}
-                           setArchivedBooks={setArchivedBooks}
-                           archivedBooks={archivedBooks}
-                           archivedBookNotes={archivedBookNotes}
-                           setArchivedBookNotes={setArchivedBookNotes}
-                        />
-                     }
-                  />
-                  <Route
-                     path="favoritebooks"
-                     element={<BooksFavorite darkMode={darkMode} setBookDetails={setBookDetails} />}
-                  />
-                  <Route
-                     path="bookstoread"
-                     element={<BooksToRead darkMode={darkMode} setBookDetails={setBookDetails} />}
-                  />
-                  <Route
-                     path="bookshaveread"
-                     element={<BooksHaveRead darkMode={darkMode} setBookDetails={setBookDetails} />}
-                  />
+                  <Route index element={<MyBooks darkMode={darkMode} />} />
+                  <Route path="bookscurrentreading">
+                     <Route
+                        index
+                        element={
+                           <BooksCurrentReading
+                              darkMode={darkMode}
+                              currentReadingBookNotes={currentReadingBookNotes}
+                              setCurrentReadingBookNotes={setCurrentReadingBookNotes}
+                              setArchivedBooks={setArchivedBooks}
+                              archivedBooks={archivedBooks}
+                              archivedBookNotes={archivedBookNotes}
+                              setArchivedBookNotes={setArchivedBookNotes}
+                           />
+                        }
+                     />
+                     <Route
+                        path=":id"
+                        element={
+                           <WriteNote
+                              darkMode={darkMode}
+                              currentReadingBookNotes={currentReadingBookNotes}
+                              setCurrentReadingBookNotes={setCurrentReadingBookNotes}
+                           />
+                        }
+                     />
+                  </Route>
+                  <Route path="favoritebooks" element={<BooksFavorite darkMode={darkMode} />} />
+                  <Route path="bookstoread" element={<BooksToRead darkMode={darkMode} />} />
+                  <Route path="bookshaveread" element={<BooksHaveRead darkMode={darkMode} />} />
                   <Route
                      path="booksarchived"
                      element={
@@ -145,15 +126,7 @@ function AnimatedRoutes({ darkMode }) {
                </Route>
                <Route
                   path="searchedbook/:booktitle"
-                  element={
-                     <Searched
-                        darkMode={darkMode}
-                        bookDetails={bookDetails}
-                        allBooks={allBooks}
-                        setAllBooks={setAllBooks}
-                        archivedBooks={archivedBooks}
-                     />
-                  }
+                  element={<Searched darkMode={darkMode} archivedBooks={archivedBooks} />}
                />
             </Routes>
          </AnimatePresence>

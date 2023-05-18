@@ -50,11 +50,12 @@
       @include flexbox(flex-start, flex-start, 3rem, 3rem, row, wrap);
       .filtered-current-reading-note {
          width: calc((100% - 6rem) / 3);
-         height: 14rem;
-         padding: 1rem 1rem 0;
+         min-height: 15rem;
+         padding: 1rem 1rem;
          box-shadow: 0.1rem 0.1rem 0.3rem rgba(128, 128, 128, 0.3),
             -0.1rem -0.1rem 0.3rem rgba(128, 128, 128, 0.3);
          border-radius: 0.5rem;
+         overflow-wrap: break-word;
          transition: 0.3s;
          position: relative;
          .filtered-current-reading-note-date-and-page {
@@ -62,7 +63,7 @@
             font-size: 1.1rem;
             font-weight: $font-500;
             color: $Very-dark-blue;
-            @include flexbox(flex-start, flex-start, 1rem);
+            @include flexbox(flex-start, flex-start, 1rem, 0, row, wrap);
          }
          .edit-and-delete {
             position: absolute;
@@ -191,6 +192,97 @@
                > button:hover {
                   cursor: pointer;
                }
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 1150px) {
+   .all-current-reading-notes-book-container {
+      .filtered-current-reading-book-info {
+         margin-bottom: 1rem;
+         .filtered-current-reading-book-text {
+            .filtered-current-reading-book-plublished-page {
+               display: none;
+            }
+         }
+      }
+      .filtered-current-reading-book-notes {
+         .filtered-current-reading-note {
+            padding: 3rem 1rem 1rem;
+         }
+      }
+   }
+}
+
+@media (max-width: 900px) {
+   .all-current-reading-notes-book-container {
+      .filtered-current-reading-book-info {
+         margin-bottom: 1rem;
+         .filtered-current-reading-book-text {
+            .filtered-current-reading-book-plublished-date {
+               display: none;
+            }
+         }
+      }
+      .filtered-current-reading-book-notes {
+         .filtered-current-reading-note {
+            width: calc((100% - 3rem) / 2);
+         }
+      }
+   }
+}
+
+@media (max-width: 700px) {
+   .all-current-reading-notes-book-container {
+      .filtered-current-reading-book-info {
+         margin-bottom: 1rem;
+         .filtered-current-reading-book-text {
+            .filtered-current-reading-book-plublisher {
+               display: none;
+            }
+         }
+      }
+      .filtered-current-reading-book-notes {
+         .filtered-current-reading-note {
+            width: 100%;
+         }
+         .filtered-current-reading-note:hover {
+            scale: none;
+         }
+      }
+   }
+}
+
+@media (max-width: 500px) {
+   .all-current-reading-notes-book-container {
+      .filtered-current-reading-book-info {
+         margin-bottom: 1rem;
+         .filtered-current-reading-book-text {
+            .filtered-current-reading-book-authors {
+               display: none;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 375px) {
+   .all-current-reading-notes-book-container {
+      .filtered-current-reading-book-info {
+         margin-bottom: 1rem;
+         .filtered-current-reading-book-image {
+            width: 100%;
+            @include flexbox(center, flex-start);
+            > img {
+               width: 8rem;
+               height: 12rem;
+            }
+         }
+         .filtered-current-reading-book-text {
+            .filtered-current-reading-book-title {
+               display: none;
             }
          }
       }

@@ -1,7 +1,7 @@
 .books-current-reading-container {
   width: 100%;
-  height: calc(100vh - 4.5rem);
-  padding: 0 2rem;
+  min-height: 100vh;
+  padding: 0 2rem 1rem;
   background-color: #ffffff;
   transition: 0.3s;
 }
@@ -20,24 +20,14 @@
 .books-current-reading-container .category-book img {
   width: 1.6rem;
 }
-.books-current-reading-container .write-display-note {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  -moz-column-gap: 0;
-       column-gap: 0;
-  row-gap: 0;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
 .books-current-reading-container .display-current-reading-books {
+  margin-bottom: 2rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  -moz-column-gap: 3rem;
-       column-gap: 3rem;
-  row-gap: 3rem;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  row-gap: 2.5rem;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -45,17 +35,19 @@
   position: relative;
 }
 .books-current-reading-container .display-current-reading-books .books-displayed img {
-  width: 6.25rem;
-  height: 9rem;
+  width: 8rem;
+  height: 12rem;
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(128, 128, 128, 0.3), -0.1rem -0.1rem 0.5rem rgba(128, 128, 128, 0.3);
+  position: relative;
+  z-index: 2;
 }
 .books-current-reading-container .display-current-reading-books .books-displayed .see-and-delete-icons {
   position: absolute;
-  bottom: 30%;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   transition: 0.5s;
-  z-index: -1;
+  z-index: 1;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -88,12 +80,29 @@
     scale: 1.1;
     transition: 0.3s;
   }
-  .books-current-reading-container .display-current-reading-books .books-displayed:hover .see-and-delete-icons {
-    bottom: -1.7rem;
-  }
-  .books-current-reading-container .display-current-reading-books .books-displayed .see-and-delete-icons img {
+  .books-current-reading-container .display-current-reading-books .books-displayed .see-and-delete-icons img:hover {
     cursor: pointer;
     scale: 1.1;
     z-index: 1;
+  }
+}
+@media (max-width: 500px) {
+  .books-current-reading-container {
+    padding: 0 1rem 1rem;
+  }
+}
+@media (max-width: 375px) {
+  .books-current-reading-container .display-current-reading-books {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    row-gap: 2.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .books-current-reading-container .category-book {
+    font-size: 1.1rem;
   }
 }/*# sourceMappingURL=booksCurrentReading.css.map */

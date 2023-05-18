@@ -81,7 +81,8 @@ function CurrentReadingBooksNotes({
                               />
                            </div>
                            <div className="infos-current-Reading-book-note">
-                              <p className="note-current-Reading-date-time">{`${note.date} ${note.time}`}</p>
+                              <p className="note-current-Reading-date">{`${note.date}`}</p>
+                              <p className="note-current-Reading-time">{`${note.time}`}</p>
                               <p className="note-current-Reading-page-number">
                                  Page <span>{note.page}</span>
                               </p>

@@ -33,6 +33,26 @@
 
 @media (hover: hover) {
   .my-notes-container .book-notes-selection .link:hover {
-    text-decoration: underline;
+    background-color: #003147;
+    color: #ffffff;
+  }
+  .my-notes-container.dark-mode .book-notes-selection .link:hover {
+    background-color: #66b8ff;
+    color: #1f1f1f;
+  }
+}
+@media (max-width: 500px) {
+  .my-notes-container {
+    padding: 0 1rem 1rem;
+  }
+  .my-notes-container .book-notes-selection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    -moz-column-gap: 0;
+         column-gap: 0;
+    row-gap: 0.5rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 }/*# sourceMappingURL=myNotes.css.map */
