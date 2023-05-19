@@ -72,8 +72,6 @@ function BooksCurrentReading({
                   return bookNotes.id !== e.target.id;
                });
                setCurrentReadingBooks(nonMovedCurrentReadingBooks);
-
-               setCurrentBook(null);
                archiveBookConfirm(darkMode);
             }
          });
@@ -99,7 +97,6 @@ function BooksCurrentReading({
                } else {
                   setCurrentReadingBooks([]);
                   setCurrentReadingBookNotes([]);
-                  setCurrentBook("");
                }
                deleteOneItemConfirmed(darkMode, "book");
             }
@@ -116,11 +113,9 @@ function BooksCurrentReading({
                   );
                   setCurrentReadingBooks(nonDeletedBooks);
                   setCurrentReadingBookNotes(nonDeletedNotes);
-                  setCurrentBook("");
                } else {
                   setCurrentReadingBooks([]);
                   setCurrentReadingBookNotes([]);
-                  setCurrentBook("");
                }
                deleteOneItemConfirmed(darkMode, "book");
             }
@@ -135,7 +130,6 @@ function BooksCurrentReading({
                if (result.isConfirmed) {
                   setCurrentReadingBooks([]);
                   setCurrentReadingBookNotes([]);
-                  setCurrentBook("");
                   deleteAllItemsConfirm(darkMode, "books");
                }
             });
@@ -144,7 +138,6 @@ function BooksCurrentReading({
                if (result.isConfirmed) {
                   setCurrentReadingBooks([]);
                   setCurrentReadingBookNotes([]);
-                  setCurrentBook("");
                   deleteAllItemsConfirm(darkMode, "books");
                }
             });
