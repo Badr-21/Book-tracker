@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "../styles/currentReadingBooksNotesStyles/currentReadingBooksNotes.css";
 import allNotesIcon from "../assets/all-notes-icon.svg";
 import allNotesIconDarkMode from "../assets/all-notes-icon-darkmode.svg";
-import deleteIcon from "../assets/delete-Icon.svg";
+import deleteIcon from "../assets/delete-icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
 import deleteAllIcon from "../assets/delete-all-icon.svg";
 import deleteAllIconDarkMode from "../assets/delete-all-icon-darkmode.svg";

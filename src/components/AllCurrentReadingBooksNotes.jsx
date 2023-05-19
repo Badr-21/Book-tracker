@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/allCurrentReadingBooksNotesStyles/allCurrentReadingBooksNotesStyles.css";
-import deleteIcon from "../assets/delete-Icon.svg";
+import deleteIcon from "../assets/delete-icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
 import deleteAllIcon from "../assets/delete-all-icon.svg";
 import deleteAllIconDarkMode from "../assets/delete-all-icon-darkmode.svg";
