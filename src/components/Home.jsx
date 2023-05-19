@@ -17,11 +17,12 @@ function Home({ darkMode }) {
 
    const booksRef = useRef();
 
-   const APP_KEY = "AIzaSyB2D5niYoZfSoxTy4WSfsBmWQR9cvpNJ9A";
    const fetchData = async () => {
       try {
          await fetch(
-            `https://www.googleapis.com/books/v1/volumes?q=${query}&orderBy=relevance&key=${APP_KEY}&langRestrict=en&maxResults=40`
+            `https://www.googleapis.com/books/v1/volumes?q=${query}&orderBy=relevance&key=${
+               import.meta.env.VITE_APP_API_KEY
+            }&langRestrict=en&maxResults=40`
          )
             .then((response) => response.json())
             .then((result) => {
