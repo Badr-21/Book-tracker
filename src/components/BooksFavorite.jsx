@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import "../styles/booksFavoriteStyles/bookFavorite.css";
 import Back from "./Back";
 import { favoriteBooksContext } from "../App";
-import deleteIcon from "../assets/delete-Icon.svg";
+import deleteIcon from "../assets/delete-icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
 import deleteAllIcon from "../assets/delete-all-icon.svg";
 import deleteAllIconDarkMode from "../assets/delete-all-icon-darkmode.svg";
