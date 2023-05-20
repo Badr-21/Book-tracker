@@ -8,12 +8,11 @@ import arrowUpIconDarkMode from "../assets/arrow-up-icon-darkmode.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function Home({ darkMode }) {
+function Home({ darkMode, data, setData }) {
    const [query, setQuery] = useState("");
    const [result, setResult] = useState(false);
    const [lastScrollY, setLastScrollY] = useState(0);
    const [show, setShow] = useState(false);
-   const [data, setData] = useState();
 
    const booksRef = useRef();
 

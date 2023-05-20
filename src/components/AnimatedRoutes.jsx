@@ -26,13 +26,18 @@ function AnimatedRoutes({ darkMode }) {
       getLocalStorage("archived book notes")
    );
 
+   const [data, setData] = useState();
+
    const location = useLocation();
 
    return (
       <main style={darkMode ? { backgroundColor: "#1f1f1f" } : { backgroundColor: "#ffffff" }}>
          <AnimatePresence>
             <Routes location={location} key={location.pathname}>
-               <Route path="/" element={<Home darkMode={darkMode} />} />
+               <Route
+                  path="/"
+                  element={<Home darkMode={darkMode} data={data} setData={setData} />}
+               />
                <Route path="mybooks">
                   <Route index element={<MyBooks darkMode={darkMode} />} />
                   <Route path="bookscurrentreading">
