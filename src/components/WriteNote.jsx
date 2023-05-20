@@ -71,9 +71,6 @@ function WriteNote({ darkMode, currentReadingBookNotes, setCurrentReadingBookNot
       setBookId(location.state.bookId);
       setCurrentBook(location.state.currentBook);
    }, [location.state.crrentBook]);
-   useEffect(() => {
-      console;
-   });
 
    return (
       <article className={darkMode ? "write-note-container dark-mode" : "write-note-container"}>
