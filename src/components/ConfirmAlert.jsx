@@ -142,6 +142,33 @@ export const deleteAllBooksWithNoteAlert = (darkMode) =>
            }
    );
 
+export const deleteAllArchivedBooksAlert = (darkMode) =>
+   Swal.fire(
+      darkMode
+         ? {
+              width: "28rem",
+              title: "These books have notes!",
+              text: `Do you want to delete all the books? notes will be deleted`,
+              background: "#151519",
+              color: "#66b8ff",
+              showCancelButton: true,
+              confirmButtonColor: "#66b8ff",
+              cancelButtonColor: "#66b8ff",
+              confirmButtonText: "Yes, delete all!",
+           }
+         : {
+              width: "28rem",
+              title: "These books have notes!",
+              text: `Do you want to delete all the books? notes will be deleted`,
+              background: "#ededed",
+              color: "#003147",
+              showCancelButton: true,
+              confirmButtonColor: "#003147",
+              cancelButtonColor: "#003147",
+              confirmButtonText: "Yes, delete all!",
+           }
+   );
+
 export const archiveBookAlert = (darkMode) =>
    Swal.fire(
       darkMode

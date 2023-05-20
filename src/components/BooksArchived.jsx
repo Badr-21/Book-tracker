@@ -17,7 +17,7 @@ import {
    deleteAllItemsAlert,
    deleteAllItemsConfirm,
    deleteOneBookWithNoteAlert,
-   deleteAllBooksWithNoteAlert,
+   deleteAllArchivedBooksAlert,
    moveBackBookAlert,
    moveBackBookConfirm,
 } from "../components/ConfirmAlert";
@@ -116,7 +116,7 @@ function BooksArchived({
    const deleteAllArchivedBooks = () => {
       if (archivedBooks.length) {
          if (archivedBookNotes.length) {
-            deleteAllBooksWithNoteAlert(darkMode).then((result) => {
+            deleteAllArchivedBooksAlert(darkMode).then((result) => {
                if (result.isConfirmed) {
                   setArchivedBooks([]);
                   setArchivedBookNotes([]);
