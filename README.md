@@ -1,7 +1,7 @@
 # Book tracker
 Book tracker is my first portfolio project, it's a React CRUD app using local storage and [google books Api](https://developers.google.com/books)
 
-![Book tracker home page](https://github.com/Badr-21/Book-tracker/blob/main/public/homepage.png)
+![Book tracker home page](https://github.com/Badr-21/Book-tracker/blob/main/public/home-page.png)
 
 
 ## Usage
