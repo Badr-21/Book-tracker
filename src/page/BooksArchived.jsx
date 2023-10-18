@@ -1,5 +1,5 @@
 import { useEffect, useContext, useRef } from "react";
-import Back from "./Back";
+import Back from "../components/Back";
 import { currentReadingContext } from "../App";
 import "../styles/booksArchivedStyles/booksArchived.css";
 import deleteIcon from "../assets/delete-icon.svg";
@@ -21,7 +21,7 @@ import {
    moveBackBookAlert,
    moveBackBookConfirm,
 } from "../components/ConfirmAlert";
-import Toast, { notifyEmptyList } from "./Toast";
+import Toast, { notifyEmptyList } from "../components/Toast";
 
 function BooksArchived({
    darkMode,

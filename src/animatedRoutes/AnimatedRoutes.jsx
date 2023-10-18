@@ -1,21 +1,21 @@
 import { useState } from "react";
-import Home from "./Home";
-import MyBooks from "./MyBooks";
-import Searched from "./Searched";
-import BooksCurrentReading from "./BooksCurrentReading";
-import BooksFavorite from "./BooksFavorite";
-import BooksToRead from "./BooksToRead";
-import BooksHaveRead from "./BooksHaveRead";
-import BooksArchived from "./BooksArchived";
-import MyNotes from "./MyNotes";
-import AllCurrentReadingBooksNotes from "./AllCurrentReadingBooksNotes";
-import CurrentReadingBooksNotes from "./CurrentReadingBooksNotes";
-import ArchivedBooksNotes from "./ArchivedBooksNotes";
-import AllArchivedBooksNotes from "./AllArchivedBooksNotes";
+import Home from "../page/Home";
+import MyBooks from "../page/MyBooks";
+import Searched from "../components/Searched";
+import BooksCurrentReading from "../page/BooksCurrentReading";
+import BooksFavorite from "../page/BooksFavorite";
+import BooksToRead from "../page/BooksToRead";
+import BooksHaveRead from "../page/BooksHaveRead";
+import BooksArchived from "../page/BooksArchived";
+import MyNotes from "../page/MyNotes";
+import AllCurrentReadingBooksNotes from "../page/AllCurrentReadingBooksNotes";
+import CurrentReadingBooksNotes from "../page/CurrentReadingBooksNotes";
+import ArchivedBooksNotes from "../page/ArchivedBooksNotes";
+import AllArchivedBooksNotes from "../page/AllArchivedBooksNotes";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { getLocalStorage } from "../App";
 import { AnimatePresence } from "framer-motion";
-import WriteNote from "./WriteNote";
+import WriteNote from "../components/WriteNote";
 
 function AnimatedRoutes({ darkMode }) {
    const [archivedBooks, setArchivedBooks] = useState(() => getLocalStorage("archived books"));

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import "../styles/booksFavoriteStyles/bookFavorite.css";
-import Back from "./Back";
+import Back from "../components/Back";
 import { favoriteBooksContext } from "../App";
 import deleteIcon from "../assets/delete-icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
@@ -16,7 +16,7 @@ import {
    deleteAllItemsConfirm,
 } from "../components/ConfirmAlert";
 import { motion } from "framer-motion";
-import Toast, { notifyEmptyList } from "./Toast";
+import Toast, { notifyEmptyList } from "../components/Toast";
 
 function BooksFavorite({ darkMode }) {
    const { favoriteBooks, setFavoriteBooks } = useContext(favoriteBooksContext);

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "../styles/myBooksStyles/myBooks.css";
-import Back from "./Back";
+import Back from "../components/Back";
 import {
    currentReadingContext,
    favoriteBooksContext,

@@ -12,7 +12,7 @@ import {
    deleteOneItemConfirmed,
    deleteAllItemsAlert,
    deleteAllItemsConfirm,
-} from "./ConfirmAlert";
+} from "../components/ConfirmAlert";
 
 function CurrentReadingBooksNotes({
    currentReadingBookNotes,

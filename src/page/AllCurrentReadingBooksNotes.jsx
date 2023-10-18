@@ -12,9 +12,9 @@ import {
    deleteOneItemConfirmed,
    deleteAllItemsAlert,
    deleteAllItemsConfirm,
-} from "./ConfirmAlert";
+} from "../components/ConfirmAlert";
 import { motion } from "framer-motion";
-import Toast, { notifySuccessfullyEdited } from "./Toast";
+import Toast, { notifySuccessfullyEdited } from "../components/Toast";
 
 function AllCurrentReadingBooksNotes({
    darkMode,

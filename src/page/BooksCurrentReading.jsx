@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import "../styles/booksCurrentReadingStyles/booksCurrentReading.css";
-import Back from "./Back";
+import Back from "../components/Back";
 import { currentReadingContext } from "../App";
 import deleteIcon from "../assets/delete-icon.svg";
 import deleteIconDarkMode from "../assets/delete-icon-darkmode.svg";
@@ -11,7 +11,7 @@ import BookArchivedIconDarMode from "../assets/book-archive-icon-darkmode.svg";
 import noteWriteIcon from "../assets/note-write-icon.svg";
 import noteWriteIconDarkMode from "../assets/note-write-icon-darkmode.svg";
 import { motion } from "framer-motion";
-import Toast, { notifyDeniedArchiving, notifyEmptyList } from "./Toast";
+import Toast, { notifyDeniedArchiving, notifyEmptyList } from "../components/Toast";
 import {
    archiveBookAlert,
    archiveBookConfirm,

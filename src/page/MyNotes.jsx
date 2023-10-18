@@ -1,5 +1,5 @@
 import "../styles/myNotesStyles/myNotes.css";
-import Back from "./Back";
+import Back from "../components/Back";
 import { motion } from "framer-motion";
 import { NavLink, Outlet } from "react-router-dom";
 
